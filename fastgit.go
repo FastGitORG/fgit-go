@@ -7,6 +7,7 @@ import (
 	"os/exec"
 	"path"
 	"strings"
+	"io/ioutil"
 )
 
 func convertToFastGit() bool {
@@ -22,22 +23,16 @@ func convertHelper(oldPrefixValue, newPrefixValue string) bool {
 	checkErr(err, "This is not a git path! Cannot push!", 1)
 	defer fi.Close()
 
-	fileStat, err := fi.Stat()
-	checkErr(err, "Cannot get file state!", 2)
-
-	fileByte, err := fi.Read(make([]byte, fileStat.Size()))
-	checkErr(err, "Cannot read .git file!", 3)
-
-	gitConfig := string(fileByte)
+	gitConfigByte, err := ioutil.ReadFile(path.Join(".git", "config"))
+	checkErr(err, "Cannot read .git config file!", 3)
+	gitConfig := string(gitConfigByte)
 
 	isReplaceDo := false
 	sb := new(bytes.Buffer)
 	iniArray := strings.Split(gitConfig, "\n")
 	for i := range iniArray {
-		if strings.HasPrefix(strings.Replace(iniArray[i], " ", "", -1), "url=") {
-			iniArray[i] = strings.Replace(iniArray[i], oldPrefixValue, newPrefixValue, 1)
-			isReplaceDo = true
-		}
+		iniArray[i] = strings.Replace(iniArray[i], oldPrefixValue, newPrefixValue, 1)
+		isReplaceDo = true
 		sb.WriteString(iniArray[i] + "\n")
 	}
 	fi.Write(sb.Bytes())
@@ -46,7 +41,8 @@ func convertHelper(oldPrefixValue, newPrefixValue string) bool {
 
 func checkErr(err error, msg string, exitCode int) {
 	if err != nil {
-		fmt.Print(msg)
+		fmt.Println("Exception Detective: ", msg)
+		fmt.Println("Tracker: ", err)
 		os.Exit(exitCode)
 	}
 }
