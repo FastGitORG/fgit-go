@@ -3,11 +3,11 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"os/exec"
 	"path"
 	"strings"
-	"io/ioutil"
 )
 
 func convertToFastGit() bool {
