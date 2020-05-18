@@ -7,16 +7,16 @@ jobs:
     name: Build Job
     docker:
       - image: circleci/golang:1.9
-    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+    working_directory: /go/src/github.com/fastgitorg/fgit-go
     environment:
-      CGO_ENABLED=0
+      CGO_ENABLED: 0
     steps:
       - checkout
       - run:
           name:
             Build AMD64
           environmemt:
-            GOARCH=amd64
+            GOARCH: amd64
           command: |
             echo -> Compiling AMD64
             GOOS=windows
