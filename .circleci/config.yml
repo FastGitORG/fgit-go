@@ -29,5 +29,5 @@ jobs:
             echo --> Compiling Linux
             go build -o release\fgit-linux-amd64 fgit.go
       - store_artifacts:
-        path: /release
-        destination: CI build version, just for test.
+          path: /release
+          destination: CI build version, just for test.
