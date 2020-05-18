@@ -55,4 +55,4 @@ jobs:
               
       - store_artifacts:
           path: ~/release
-          destination: CI build version, just for test.
+          destination: CI Build
