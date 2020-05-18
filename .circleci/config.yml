@@ -21,13 +21,13 @@ jobs:
             echo -> Compiling AMD64
             GOOS=windows
             echo --> Compiling Windows
-            go build -o /release/fgit-windows-amd64.exe fgit.go 
+            go build -o ~/release/fgit-windows-amd64.exe fgit.go 
             GOOS=darwin
             echo --> Compiling Darwin
-            go build -o /release/fgit-darwin-amd64 fgit.go 
+            go build -o ~/release/fgit-darwin-amd64 fgit.go 
             GOOS=linux
             echo --> Compiling Linux
-            go build -o /release/fgit-linux-amd64 fgit.go
+            go build -o ~/release/fgit-linux-amd64 fgit.go
       - store_artifacts:
-          path: /release
+          path: ~/release
           destination: CI build version, just for test.
