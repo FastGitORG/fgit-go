@@ -1,6 +1,6 @@
 # fgit-go
 
-[![CircleCI](https://circleci.com/gh/fastgitorg/fgit-go/tree/master.svg?style=svg)](https://circleci.com/gh/fastgitorg/fgit-go/tree/master) **<=== [click this to download nightly version]**
+[![CircleCI](https://circleci.com/gh/fastgitorg/fgit-go/tree/master.svg?style=svg)](https://circleci.com/gh/fastgitorg/fgit-go/tree/master)
 
 Command line to do git operation with FastGit.
 
