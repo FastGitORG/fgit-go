@@ -1,0 +1,34 @@
+# Golang CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-go/ for more details
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.9
+    working_directory: /go/src/github.com/{{ORG_NAME}}/{{REPO_NAME}}
+    environment:
+      CGO_ENABLED=0
+    steps:
+      - checkout
+      - run:
+        name: 
+          Build AMD64
+        environmemt:
+          CGO_ENABLED=0
+          GOARCH=amd64
+        command: |
+          echo -> Compiling AMD64
+          GOOS=windows
+          echo --> Compiling Windows
+          go build -o release\fgit-windows-amd64.exe fgit.go 
+          GOOS=darwin
+          echo --> Compiling Darwin
+          go build -o release\fgit-darwin-amd64 fgit.go 
+          GOOS=linux
+          echo --> Compiling Linux
+          go build -o release\fgit-linux-amd64 fgit.go
+
+      - store_artifacts:
+        path: /release
+        destination: CI build version, just for test.
