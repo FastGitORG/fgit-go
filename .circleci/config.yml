@@ -12,10 +12,9 @@ jobs:
     steps:
       - checkout
       - run:
-        name: 
+        name:
           Build AMD64
         environmemt:
-          CGO_ENABLED=0
           GOARCH=amd64
         command: |
           echo -> Compiling AMD64
