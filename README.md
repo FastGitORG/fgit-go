@@ -65,3 +65,9 @@ To
 [branch "master"]
         remote = origin
         merge = refs/heads/master
+```
+
+## TODO
+
+- [ ] `--verbose` flag
+- [ ] `--node` flag
