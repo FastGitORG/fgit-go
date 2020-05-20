@@ -49,7 +49,7 @@ func checkErr(err error, msg string, exitCode int) {
 
 func main() {
 	if len(os.Args) == 1 {
-		fmt.Print("" +
+		fmt.Println("" +
 			"FastGit Command Tool\n" +
 			"====================\n" +
 			"We will convert GitHub to FastGit automatically\n" +
