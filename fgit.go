@@ -50,8 +50,8 @@ func checkErr(err error, msg string, exitCode int) {
 func main() {
 	if len(os.Args) == 1 {
 		fmt.Println("" +
-			"FastGit Command Tool\n" +
-			"====================\n" +
+			"FastGit Command Line Tool\n" +
+			"=========================\n" +
 			"We will convert GitHub to FastGit automatically\n" +
 			"Do everything like git\n" +
 			"Build by KevinZonda with GoLang")
