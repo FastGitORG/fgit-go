@@ -15,39 +15,28 @@ jobs:
           name:
             Build AMD64
           command: |
-            env GOARCH=amd64
-            env GOOS=windows
-            go build -o ~/release/fgit-windows-amd64.exe fgit.go
-            env GOOS=darwin
-            go build -o ~/release/fgit-darwin-amd64 fgit.go
-            env GOOS=linux
-            go build -o ~/release/fgit-linux-amd64 fgit.go
+            GOARCH=amd64 GOOS=windows go build -o ~/release/fgit-windows-amd64.exe fgit.go
+            GOARCH=amd64 GOOS=darwin go build -o ~/release/fgit-darwin-amd64 fgit.go
+            GOARCH=amd64 GOOS=linux go build -o ~/release/fgit-linux-amd64 fgit.go
 
       - run:
           name:
             Build 386
           command: |
-            env GOARCH=386
-            env GOOS=windows
-            go build -o ~/release/fgit-windows-386.exe fgit.go
-            env GOOS=linux
-            go build -o ~/release/fgit-linux-386 fgit.go
+            GOARCH=386 GOOS=windows go build -o ~/release/fgit-windows-386.exe fgit.go
+            GOARCH=386 GOOS=linux go build -o ~/release/fgit-linux-386 fgit.go
 
       - run:
           name:
             Build ARM
           command: |
-            env GOARCH=arm
-            env GOOS=linux
-            go build -o ~/release/fgit-linux-arm fgit.go
+            GOARCH=arm GOOS=linux go build -o ~/release/fgit-linux-arm fgit.go
 
       - run:
           name:
             Build ARM64
           command: |
-            env GOARCH=arm64
-            env GOOS=linux
-            go build -o ~/release/fgit-linux-arm64 fgit.go
+            GOARCH=arm64 GOOS=linux go build -o ~/release/fgit-linux-arm64 fgit.go
               
       - store_artifacts:
           path: ~/release
