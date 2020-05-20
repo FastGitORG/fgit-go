@@ -14,9 +14,8 @@ jobs:
       - run:
           name:
             Build AMD64
-          environmemt:
-            GOARCH: amd64
           command: |
+            GOARCH=amd64
             GOOS=windows
             go build -o ~/release/fgit-windows-amd64.exe fgit.go
             GOOS=darwin
@@ -27,9 +26,8 @@ jobs:
       - run:
           name:
             Build 386
-          environmemt:
-            GOARCH: 386
           command: |
+            GOARCH=386
             GOOS=windows
             go build -o ~/release/fgit-windows-386.exe fgit.go
             GOOS=linux
@@ -38,18 +36,16 @@ jobs:
       - run:
           name:
             Build ARM
-          environmemt:
-            GOARCH: arm
           command: |
+            GOARCH=arm
             GOOS=linux
             go build -o ~/release/fgit-linux-arm fgit.go
 
       - run:
           name:
             Build ARM64
-          environmemt:
-            GOARCH: arm64
           command: |
+            GOARCH=arm64
             GOOS=linux
             go build -o ~/release/fgit-linux-arm64 fgit.go
               
