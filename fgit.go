@@ -8,7 +8,30 @@ import (
 	"os/exec"
 	"path"
 	"strings"
+	"net/http"
 )
+
+func debugConnection(url string) bool {
+	fmt.Print("Test connection...")
+	response, err := http.Head(url)
+	if err != nil {
+		fmt.Println("Failed")
+		fmt.Println("Response create failed")
+		return false
+	}
+	if response.StatusCode != http.StatusOK {
+		fmt.Println("Failed")
+		return false
+	} else {
+		fmt.Println("Success")
+		return true
+	}
+}		
+		
+
+func debug(url string) {
+	debugConnection(url)
+}
 
 func convertToFastGit() bool {
 	return convertHelper("https://github.com", "https://hub.fastgit.org")
