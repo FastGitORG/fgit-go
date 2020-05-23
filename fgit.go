@@ -30,7 +30,11 @@ func debugConnection(url string) bool {
 		
 
 func debug(url string) {
-	debugConnection(url)
+	if(url != "--help") {
+		debugConnection(url)
+	} else {
+		// TODO: Help print
+	}
 }
 
 func convertToFastGit() bool {
@@ -83,6 +87,19 @@ func main() {
 
 	isConvertToFastGit := false
 	isPush := false
+	
+	if (os.Args[1] == "debug") {
+		switch len(os.Args) {
+			case 2:
+			debug("https://hub.fastgit.org")
+			case 3:
+			debug(os.Args[2])
+			default:
+			fmt.Println("Invalid args for debug. If help wanted, use --help arg.")
+			os.Exit(1)
+		}
+	}
+	
 	for i := range os.Args {
 		if os.Args[i] == "push" {
 			isPush = true
