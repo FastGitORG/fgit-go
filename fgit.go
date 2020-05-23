@@ -30,11 +30,11 @@ func debugConnection(url string) bool {
 }
 
 func debug(url string) bool {
+	fmt.Println("" +
+		"FastGit Debug Command Line Tool\n" +
+		"===============================")
 	if url != "--help" {
-		fmt.Println("" +
-			"FastGit Debug Tool\n" +
-			"==================\n" +
-			"Remote Address:", url)
+		fmt.Println("Remote Address:", url)
 		fmt.Print("IP Address: ")
 		addr, err := net.LookupIP(strings.Replace(strings.Replace(url, "https://", "", -1), "http://", "", -1))
 		if err != nil {
@@ -60,8 +60,6 @@ func debug(url string) bool {
 		return debugConnection(url)
 	} else {
 		fmt.Println("" +
-			"FastGit Debug Command Line Tool\n" +
-			"===============================\n" +
 			"SYNTAX\n" +
 			"    fgit debug [URL<string>] [--help]\n" +
 			"REMARKS\n" +
@@ -128,7 +126,7 @@ func main() {
 	}
 
 	isConvertToFastGit := false
-	isPush := false
+	isPushOrPull := false
 
 	if os.Args[1] == "debug" {
 		var isConnectOk bool
@@ -148,13 +146,13 @@ func main() {
 	}
 
 	for i := range os.Args {
-		if os.Args[i] == "push" {
-			isPush = true
+		if os.Args[i] == "push" || os.Args[i] == "pull" {
+			isPushOrPull = true
 			break
 		}
 	}
 
-	if isPush {
+	if isPushOrPull {
 		isConvertToFastGit = convertToFastGit()
 	}
 
