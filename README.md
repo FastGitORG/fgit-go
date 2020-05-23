@@ -21,6 +21,32 @@ Before use fgit-go, install `git` by yourself. Add git to env PATH is also **req
 
 Download source code of fgit-go, build and run.
 
+## Extra Syntax
+
+### 1. debug
+
+**SYNTAX:**
+
+```bash
+fgit debug [URL<string>] [help]
+```
+
+**FUNCTION:**
+
+This command line is for debug. Will provide remote addr, local addr, and connection info.
+
+**EXAMPLE:**
+
+```bash
+>fastgit debug
+FastGit Debug Tool
+==================
+Remote Address: https://hub.fastgit.org
+IP Address: [x.x.x.x]
+Local Address: [x.x.x.x]
+Test connection...Success
+```
+
 ## Difference between fgit
 
 [fgit](https://github.com/fastgitorg/fgit) by @xkeyc only provides clone operation support, but fgit-go provides push and etc.
