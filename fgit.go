@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net"
 	"net/http"
@@ -145,6 +146,18 @@ func main() {
 		}
 	}
 
+	if os.Args[1] == "get" {
+		switch len(os.Args) {
+		default:
+			get("", "")
+		case 3:
+			get(os.Args[2], "")
+		case 4:
+			get(os.Args[2], os.Args[3])
+		}
+		os.Exit(0)
+	}
+
 	for i := range os.Args {
 		if os.Args[i] == "push" || os.Args[i] == "pull" {
 			isPushOrPull = true
@@ -175,4 +188,91 @@ func main() {
 	if isConvertToFastGit {
 		convertToGitHub()
 	}
+}
+
+func get(url, fpath string) {
+	if url == "" || url == "--help" {
+		fmt.Println("" +
+			"FastGit Get Command Line Tool\n" +
+			"=============================\n" +
+			"REMARKS\n" +
+			"    Download with FastGit automatically\n" +
+			"SYNTAX\n" +
+			"    fgit [--help]\n" +
+			"    fgit get [url<string>]\n" +
+			"    fgit get [url<string>] [path<string>]\n" +
+			"EXAMPLE\n" +
+			"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip")
+		os.Exit(0)
+	} else {
+		downloadFile(url, fpath)
+	}
+}
+
+func downloadFile(url, fpath string) {
+	urlSplit := strings.Split(url, "\\")
+	filename := urlSplit[len(urlSplit) - 1]
+	if fpath == "" {
+		downloadFile(url, filename)
+	}
+
+	if isExists(fpath) {
+		if isDir(fpath) {
+			fpath = path.Join(fpath, filename)
+			downloadFile(url, fpath)
+		} else {
+			isContinue := ' '
+			fmt.Scanf("%c", isContinue)
+
+			switch strings.ToLower(string(isContinue)) {
+			case "y":
+				os.Remove(fpath)
+				goto startDown
+			case "n":
+				fmt.Println("User cancle the command")
+				os.Exit(0)
+			default:
+				fmt.Println("Unknown input, exiting...")
+				os.Exit(1)
+			}
+
+		}
+
+	startDown:
+		newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
+		if newUrl != url {
+			fmt.Println("Redirect url ->", newUrl)
+		}
+		resp, err := http.Get(newUrl)
+		checkErr(err, "Http.Get create failed", 1)
+		defer resp.Body.Close()
+
+		out, err := os.Create(fpath)
+		checkErr(err, "File create failed", 1)
+		defer out.Close()
+		_, err = io.Copy(out, resp.Body)
+		checkErr(err, "io.Copy failed!", 1)
+		os.Exit(0)
+	}
+
+	os.Exit(0)
+}
+
+func isDir(path string) bool {
+	s, err := os.Stat(path)
+	if err != nil {
+		return false
+	}
+	return s.IsDir()
+}
+
+func isExists(path string) bool {
+	_, err := os.Stat(path)    //os.Stat获取文件信息
+	if err != nil {
+		if os.IsExist(err) {
+			return true
+		}
+		return false
+	}
+	return true
 }
