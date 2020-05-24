@@ -122,6 +122,7 @@ func main() {
 			"    Build by KevinZonda with GoLang\n" +
 			"EXTRA-SYNTAX\n" +
 			"    fgit debug [URL<string>] [--help]\n" +
+			"    fgit get [URL<string>] [Path<string>] [--help]" +
 			"    If you wan to known more about extra-syntax, try to use --help")
 		os.Exit(0)
 	}
@@ -199,8 +200,8 @@ func get(url, fpath string) {
 			"    Download with FastGit automatically\n" +
 			"SYNTAX\n" +
 			"    fgit [--help]\n" +
-			"    fgit get [url<string>]\n" +
-			"    fgit get [url<string>] [path<string>]\n" +
+			"    fgit get [URL<string>]\n" +
+			"    fgit get [URL<string>] [Path<string>]\n" +
 			"EXAMPLE\n" +
 			"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip")
 		os.Exit(0)
@@ -242,7 +243,7 @@ func downloadFile(url, fpath string) {
 	startDown:
 		newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
 		if newUrl != url {
-			fmt.Println("Redirect url ->", newUrl)
+			fmt.Println("Redirect ->", newUrl)
 		}
 		fmt.Println("Downloading...")
 		resp, err := http.Get(newUrl)
