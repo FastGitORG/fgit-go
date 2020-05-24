@@ -47,6 +47,29 @@ Local Address: [x.x.x.x]
 Test connection...Success
 ```
 
+### 2. get
+
+**SYNTAX:**
+
+```bash
+fgit get [URL<string>] [Path<string>] [--help]
+```
+
+**FUNCTION:**
+
+This command line is for downloading. Will auto convert github download link to fastgit.
+
+**EXAMPLE:**
+
+```bash
+>fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip
+File with the same name exists. New file will cover the old file.
+Do you want to continue? [Y/n]y
+Redirect url -> https://download.fastgit.org/fastgitorg/fgit-go/archive/master.zip
+Downloading...
+Finished.
+```
+
 ## Difference between fgit
 
 [fgit](https://github.com/fastgitorg/fgit) by @xkeyc only provides clone operation support, but fgit-go provides push and etc.
