@@ -210,7 +210,7 @@ func get(url, fpath string) {
 }
 
 func downloadFile(url, fpath string) {
-	urlSplit := strings.Split(url, "\\")
+	urlSplit := strings.Split(url, "/")
 	filename := urlSplit[len(urlSplit) - 1]
 	if fpath == "" {
 		downloadFile(url, filename)
@@ -237,7 +237,7 @@ func downloadFile(url, fpath string) {
 			}
 
 		}
-
+	}
 	startDown:
 		newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
 		if newUrl != url {
@@ -253,9 +253,6 @@ func downloadFile(url, fpath string) {
 		_, err = io.Copy(out, resp.Body)
 		checkErr(err, "io.Copy failed!", 1)
 		os.Exit(0)
-	}
-
-	os.Exit(0)
 }
 
 func isDir(path string) bool {
