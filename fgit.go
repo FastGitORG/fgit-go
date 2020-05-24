@@ -48,11 +48,11 @@ func debug(url string) bool {
 		resp, err := http.Get("https://api.ip.sb/ip")
 		defer resp.Body.Close()
 		if err != nil {
-			fmt.Println("Unknown -> ", err)
+			fmt.Println("Unknown ->", err)
 		} else {
 			s, err := ioutil.ReadAll(resp.Body)
 			if err != nil {
-				fmt.Println("Unknown -> ", err)
+				fmt.Println("Unknown ->", err)
 			} else {
 				fmt.Printf("[%s]\n", strings.Replace(string(s), "\n", "", -1))
 			}
@@ -105,8 +105,8 @@ func convertHelper(oldPrefixValue, newPrefixValue string) bool {
 
 func checkErr(err error, msg string, exitCode int) {
 	if err != nil {
-		fmt.Println("Exception Detective: ", msg)
-		fmt.Println("Tracker: ", err)
+		fmt.Println("Exception:", msg)
+		fmt.Println("Tracker:", err)
 		os.Exit(exitCode)
 	}
 }
@@ -222,14 +222,15 @@ func downloadFile(url, fpath string) {
 			downloadFile(url, fpath)
 		} else {
 			isContinue := ' '
-			fmt.Scanf("%c", isContinue)
+			fmt.Print("File with the same name exists. New file will cover the old file.\nDo you want to continue? [Y/n]")
+			fmt.Scanf("%c", &isContinue)
 
 			switch strings.ToLower(string(isContinue)) {
 			case "y":
 				os.Remove(fpath)
 				goto startDown
 			case "n":
-				fmt.Println("User cancle the command")
+				fmt.Println("User cancle the operation.")
 				os.Exit(0)
 			default:
 				fmt.Println("Unknown input, exiting...")
@@ -243,6 +244,7 @@ func downloadFile(url, fpath string) {
 		if newUrl != url {
 			fmt.Println("Redirect url ->", newUrl)
 		}
+		fmt.Println("Downloading...")
 		resp, err := http.Get(newUrl)
 		checkErr(err, "Http.Get create failed", 1)
 		defer resp.Body.Close()
@@ -252,6 +254,7 @@ func downloadFile(url, fpath string) {
 		defer out.Close()
 		_, err = io.Copy(out, resp.Body)
 		checkErr(err, "io.Copy failed!", 1)
+		fmt.Println("Finished.")
 		os.Exit(0)
 }
 
