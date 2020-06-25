@@ -147,7 +147,7 @@ func main() {
 		}
 	}
 
-	if os.Args[1] == "get" {
+	if os.Args[1] == "get" || os.Args[1] == "dl" || os.Args[1] == "download" {
 		switch len(os.Args) {
 		default:
 			get("", "")
@@ -202,6 +202,9 @@ func get(url, fpath string) {
 			"    fgit [--help]\n" +
 			"    fgit get [URL<string>]\n" +
 			"    fgit get [URL<string>] [Path<string>]\n" +
+			"ALIASES\n" +
+			"    fgit dl\n" +
+			"    fgit download\n" +
 			"EXAMPLE\n" +
 			"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip")
 		os.Exit(0)
