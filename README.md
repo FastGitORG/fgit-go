@@ -1,3 +1,5 @@
+<img width="150" height="150" align="left" style="float: left; margin: 0 10px 0 0;" alt="fastgit" src="https://avatars2.githubusercontent.com/u/62810231?s=200&v=4">
+
 # fgit-go
 
 [![CircleCI](https://circleci.com/gh/fastgitorg/fgit-go/tree/master.svg?style=svg)](https://circleci.com/gh/fastgitorg/fgit-go/tree/master)
@@ -121,3 +123,17 @@ To
 
 - [ ] `--verbose` flag
 - [ ] `--node` flag
+
+## Open-Source License - [GNU General Public License v3.0](LICENSE)
+
+```license
+                    GNU GENERAL PUBLIC LICENSE
+                       Version 3, 29 June 2007
+
+ Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
+ Everyone is permitted to copy and distribute verbatim copies
+ of this license document, but changing it is not allowed.
+```
+
+-----
+Proudly build with ❤️ & golang
