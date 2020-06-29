@@ -249,16 +249,16 @@ func downloadFile(url, fpath string) {
 	}
 
 startDown:
-	if strings.HasPrefix(url, "https://github.com") {
-		query := strings.Replace(url, "https://github.com", "", -1)
+	if strings.HasPrefix(url, "https://github.com/") {
+		query := strings.Replace(url, "https://github.com/", "", -1)
 		querySplit := strings.Split(query, "/")
 		if len(querySplit) > 3 {
 			// Source -> fastgitorg/fgit-go/blob/master/fgit.go
 			// Target -> fastgitorg/fgit-go/master/fgit.go
-			if querySplit[3] == "blob" {
+			if querySplit[2] == "blob" {
 				url = "https://raw.fastgit.org/"
 				for _i, _s := range querySplit {
-					if _i != 3 {
+					if _i != 2 {
 						// not /blob/
 						if _i == len(querySplit)-1 {
 							url += _s
