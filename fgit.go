@@ -136,7 +136,11 @@ func main() {
 		case 2:
 			isConnectOk = debug("https://hub.fastgit.org")
 		case 3:
-			isConnectOk = debug(os.Args[2])
+			_i := os.Args[2]
+			if strings.HasPrefix(_i, "https://") || strings.HasPrefix(_i, "https://") {
+				_i = "http://" + _i
+			}
+			isConnectOk = debug(_i)
 		default:
 			fmt.Println("Invalid args for debug. If help wanted, use --help arg.")
 		}
