@@ -58,6 +58,13 @@ Test connection...Success
 fgit get [URL<string>] [Path<string>] [--help]
 ```
 
+**ALIAS:**
+
+```bash
+fgit dl
+fgit download
+```
+
 **FUNCTION:**
 
 This command line is for downloading. Will auto convert github download link to fastgit.
