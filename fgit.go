@@ -248,31 +248,29 @@ func downloadFile(url, fpath string) {
 		}
 	}
 
+startDown:
 	if strings.HasPrefix(url, "https://github.com") {
 		query := strings.Replace(url, "https://github.com", "", -1)
 		querySplit := strings.Split(query, "/")
-		if len(querySplit) <= 3 {
-			goto startDown
-		}
-		// Source -> fastgitorg/fgit-go/blob/master/fgit.go
-		// Target -> fastgitorg/fgit-go/master/fgit.go
-		if querySplit[2] == "blob" {
-			url = "https://raw.fastgit.org/"
-			for _i, _s := range querySplit {
-				if _i != 2 {
-					// not /blob/
-					if _i == len(querySplit)-1 {
-						url += _s
-					} else {
-						url += _s + "/"
+		if len(querySplit) > 3 {
+			// Source -> fastgitorg/fgit-go/blob/master/fgit.go
+			// Target -> fastgitorg/fgit-go/master/fgit.go
+			if querySplit[3] == "blob" {
+				url = "https://raw.fastgit.org/"
+				for _i, _s := range querySplit {
+					if _i != 3 {
+						// not /blob/
+						if _i == len(querySplit)-1 {
+							url += _s
+						} else {
+							url += _s + "/"
+						}
 					}
 				}
+				fmt.Println("Redirect ->", url)
 			}
-			fmt.Println("Redirect ->", url)
 		}
 	}
-
-startDown:
 	newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
 	if newUrl != url {
 		fmt.Println("Redirect ->", newUrl)
