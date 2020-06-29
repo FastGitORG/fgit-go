@@ -219,7 +219,7 @@ func get(url, fpath string) {
 
 func downloadFile(url, fpath string) {
 	urlSplit := strings.Split(url, "/")
-	filename := urlSplit[len(urlSplit) - 1]
+	filename := urlSplit[len(urlSplit)-1]
 	if fpath == "" {
 		downloadFile(url, filename)
 	}
@@ -247,23 +247,48 @@ func downloadFile(url, fpath string) {
 
 		}
 	}
-	startDown:
-		newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
-		if newUrl != url {
-			fmt.Println("Redirect ->", newUrl)
-		}
-		fmt.Println("Downloading...")
-		resp, err := http.Get(newUrl)
-		checkErr(err, "Http.Get create failed", 1)
-		defer resp.Body.Close()
 
-		out, err := os.Create(fpath)
-		checkErr(err, "File create failed", 1)
-		defer out.Close()
-		_, err = io.Copy(out, resp.Body)
-		checkErr(err, "io.Copy failed!", 1)
-		fmt.Println("Finished.")
-		os.Exit(0)
+	if strings.HasPrefix(url, "https://github.com") {
+		query := strings.Replace(url, "https://github.com", "", -1)
+		querySplit := strings.Split(query, "/")
+		if len(querySplit) <= 3 {
+			goto startDown
+		}
+		// Source -> fastgitorg/fgit-go/blob/master/fgit.go
+		// Target -> fastgitorg/fgit-go/master/fgit.go
+		if querySplit[2] == "blob" {
+			url = "https://raw.fastgit.org/"
+			for _i, _s := range querySplit {
+				if _i != 2 {
+					// not /blob/
+					if _i == len(querySplit)-1 {
+						url += _s
+					} else {
+						url += _s + "/"
+					}
+				}
+			}
+			fmt.Println("Redirect ->", url)
+		}
+	}
+
+startDown:
+	newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
+	if newUrl != url {
+		fmt.Println("Redirect ->", newUrl)
+	}
+	fmt.Println("Downloading...")
+	resp, err := http.Get(newUrl)
+	checkErr(err, "Http.Get create failed", 1)
+	defer resp.Body.Close()
+
+	out, err := os.Create(fpath)
+	checkErr(err, "File create failed", 1)
+	defer out.Close()
+	_, err = io.Copy(out, resp.Body)
+	checkErr(err, "io.Copy failed!", 1)
+	fmt.Println("Finished.")
+	os.Exit(0)
 }
 
 func isDir(path string) bool {
@@ -275,7 +300,7 @@ func isDir(path string) bool {
 }
 
 func isExists(path string) bool {
-	_, err := os.Stat(path)    //os.Stat获取文件信息
+	_, err := os.Stat(path)
 	if err != nil {
 		if os.IsExist(err) {
 			return true
