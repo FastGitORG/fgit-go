@@ -13,6 +13,14 @@ import (
 	"strings"
 )
 
+var timestamp string
+var version string
+
+func showVersion() {
+	fmt.Println("Version:", version)
+	fmt.Println("Build Time:", timestamp)
+}
+
 func debugConnection(url string) bool {
 	fmt.Print("Test connection...")
 	response, err := http.Head(url)
