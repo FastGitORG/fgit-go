@@ -188,7 +188,7 @@ func main() {
 				// TODO: HELP
 				fmt.Println("Help")
 			default:
-				fmt.Println("Unknown args"))
+				fmt.Println("Unknown args")
 			}
 		}
 		os.Exit(0)
