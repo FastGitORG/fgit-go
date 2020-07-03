@@ -129,7 +129,7 @@ func main() {
 			"    Do everything like git\n" +
 			"    Build by KevinZonda with GoLang\n" +
 			"EXTRA-SYNTAX\n" +
-			"    fgit debug [URL<string>] [--help]\n" +
+			"    fgit debug [URL<string>] [--help|-h]\n" +
 			"    fgit get [URL<string>] [Path<string>] [--help]" +
 			"    If you wan to known more about extra-syntax, try to use --help")
 		os.Exit(0)
@@ -180,8 +180,8 @@ func main() {
 			case "gh":
 			case "github":
 				convertToGitHub()
-			case "fg"
-			case "fastgit"
+			case "fg":
+			case "fastgit":
 				convertToFastGit()
 			case "-h":
 			case "--help":
