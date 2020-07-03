@@ -189,6 +189,7 @@ func main() {
 				fmt.Println("Help")
 			default:
 				fmt.Println("Unknown args"))
+			}
 		}
 		os.Exit(0)
 	}
