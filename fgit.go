@@ -42,7 +42,7 @@ func debug(url string) bool {
 	fmt.Println("" +
 		"FastGit Debug Command Line Tool\n" +
 		"===============================")
-	if url != "--help" {
+	if url != "--help" && url != "-h" {
 		fmt.Println("Remote Address:", url)
 		fmt.Print("IP Address: ")
 		addr, err := net.LookupIP(strings.Replace(strings.Replace(url, "https://", "", -1), "http://", "", -1))
@@ -70,7 +70,7 @@ func debug(url string) bool {
 	} else {
 		fmt.Println("" +
 			"SYNTAX\n" +
-			"    fgit debug [URL<string>] [--help]\n" +
+			"    fgit debug [URL<string>] [--help|-h]\n" +
 			"REMARKS\n" +
 			"    URL is an optional parameter\n" +
 			"    We debug https://hub.fastgit.org by default\n" +
@@ -120,7 +120,7 @@ func checkErr(err error, msg string, exitCode int) {
 }
 
 func main() {
-	if len(os.Args) == 1 || (len(os.Args) == 2 && os.Args[1] == "--help") {
+	if len(os.Args) == 1 || (len(os.Args) == 2 && (os.Args[1] == "--help" || os.Args[1] == "-h")) {
 		fmt.Println("" +
 			"FastGit Command Line Tool\n" +
 			"=========================\n" +
@@ -171,6 +171,28 @@ func main() {
 		os.Exit(0)
 	}
 
+	if os.Args[1] == "conv" || os.Args[1] == "convert" {
+		switch len(os.Args) {
+		default:
+			// TODO: ABOUT.CONVERT
+		case 2:
+			switch os.Args[2] {
+			case "gh":
+			case "github":
+				convertToGitHub()
+			case "fg"
+			case "fastgit"
+				convertToFastGit()
+			case "-h":
+			case "--help":
+				// TODO: HELP
+				fmt.Println("Help")
+			default:
+				fmt.Println("Unknown args"))
+		}
+		os.Exit(0)
+	}
+
 	for i := range os.Args {
 		if os.Args[i] == "push" || os.Args[i] == "pull" {
 			isPushOrPull = true
@@ -204,14 +226,14 @@ func main() {
 }
 
 func get(url, fpath string) {
-	if url == "" || url == "--help" {
+	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println("" +
 			"FastGit Get Command Line Tool\n" +
 			"=============================\n" +
 			"REMARKS\n" +
 			"    Download with FastGit automatically\n" +
 			"SYNTAX\n" +
-			"    fgit [--help]\n" +
+			"    fgit [--help|-h]\n" +
 			"    fgit get [URL<string>]\n" +
 			"    fgit get [URL<string>] [Path<string>]\n" +
 			"ALIASES\n" +
