@@ -19,6 +19,7 @@ var version string
 func showVersion() {
 	fmt.Println("Version:", version)
 	fmt.Println("Build Time:", timestamp)
+	os.Exit(0)
 }
 
 func debugConnection(url string) bool {
@@ -192,6 +193,10 @@ func main() {
 			}
 		}
 		os.Exit(0)
+	}
+
+	if os.Args[1] == "-v" || os.Args[1] == "--version" || os.Args[1] == "version" {
+		showVersion()
 	}
 
 	for i := range os.Args {
