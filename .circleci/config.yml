@@ -58,7 +58,9 @@ jobs:
           name:
             Archive
           command: |
-            tar -zcvf ~/release/all.tar.gz ~/release
+            mkdir ~/tmp
+            tar -zcvf ~/tmp/all.tar.gz ~/release
+            cp ~/tmp/all.tar.gz ~/release
 
       - store_artifacts:
           path: ~/release
