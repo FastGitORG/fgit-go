@@ -160,9 +160,7 @@ func main() {
 		} else {
 			os.Exit(1)
 		}
-	case "get":
-	case "dl":
-	case "download":
+	case "get", "dl", "download":
 		switch len(os.Args) {
 		default:
 			get("", "")
@@ -172,21 +170,17 @@ func main() {
 			get(os.Args[2], os.Args[3])
 		}
 		os.Exit(0)
-	case "conv":
-	case "convert":
+	case "conv", "convert":
 		switch len(os.Args) {
 		default:
 			fmt.Println("Invalid args for conv. Use --help to get more information.")
 		case 3:
 			switch os.Args[2] {
-			case "gh":
-			case "github":
+			case "gh", "github":
 				convertToGitHub()
-			case "fg":
-			case "fastgit":
+			case "fg", "fastgit":
 				convertToFastGit()
-			case "-h":
-			case "--help":
+			case "-h", "--help":
 				fmt.Println("" +
 					"FastGit Conv Command Line Tool\n" +
 					"==============================\n" +
@@ -219,9 +213,7 @@ func main() {
 				"    fgit conv gh")
 		}
 		os.Exit(0)
-	case "-v":
-	case "--version":
-	case "version":
+	case "-v", "--version", "version":
 		showVersion()
 	}
 

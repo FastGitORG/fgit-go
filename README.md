@@ -126,11 +126,6 @@ To
         merge = refs/heads/master
 ```
 
-## TODO
-
-- [ ] `--verbose` flag
-- [ ] `--node` flag
-
 ## Open-Source License - [GNU General Public License v3.0](LICENSE)
 
 ```license
