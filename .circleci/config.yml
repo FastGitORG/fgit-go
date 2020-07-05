@@ -50,8 +50,16 @@ jobs:
           command: |
             version=`cat version`
             timestamp=`date +%Y%m%d%H%M%S`
+            echo "version -> $version"
+            echo "timestamp -> $timestamp"
             GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X main.timestamp=$timestamp" -o ~/release/fgit-linux-arm64 src/fgit.go 
-              
+
+      - run:
+          name:
+            Archive
+          command: |
+            tar -zcvf ~/release/all.tar.gz ~/release
+
       - store_artifacts:
           path: ~/release
           destination: CI Build
