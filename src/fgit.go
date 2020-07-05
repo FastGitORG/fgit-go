@@ -131,7 +131,8 @@ func main() {
 			"    Build by KevinZonda with GoLang\n" +
 			"EXTRA-SYNTAX\n" +
 			"    fgit debug [URL<string>] [--help|-h]\n" +
-			"    fgit get [URL<string>] [Path<string>] [--help]" +
+			"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
+			"    fgit conv [Target<string>] [--help|-h]\n " +
 			"    If you wan to known more about extra-syntax, try to use --help")
 		os.Exit(0)
 	}
@@ -139,7 +140,8 @@ func main() {
 	isConvertToFastGit := false
 	isPushOrPull := false
 
-	if os.Args[1] == "debug" {
+	switch os.Args[1] {
+	case "debug":
 		var isConnectOk bool
 		switch len(os.Args) {
 		case 2:
@@ -151,16 +153,16 @@ func main() {
 			}
 			isConnectOk = debug(_i)
 		default:
-			fmt.Println("Invalid args for debug. If help wanted, use --help arg.")
+			fmt.Println("Invalid args for debug. Use --help to get more information.")
 		}
 		if isConnectOk {
 			os.Exit(0)
 		} else {
 			os.Exit(1)
 		}
-	}
-
-	if os.Args[1] == "get" || os.Args[1] == "dl" || os.Args[1] == "download" {
+	case "get":
+	case "dl":
+	case "download":
 		switch len(os.Args) {
 		default:
 			get("", "")
@@ -170,13 +172,12 @@ func main() {
 			get(os.Args[2], os.Args[3])
 		}
 		os.Exit(0)
-	}
-
-	if os.Args[1] == "conv" || os.Args[1] == "convert" {
+	case "conv":
+	case "convert":
 		switch len(os.Args) {
 		default:
-			// TODO: ABOUT.CONVERT
-		case 2:
+			fmt.Println("Invalid args for conv. Use --help to get more information.")
+		case 3:
 			switch os.Args[2] {
 			case "gh":
 			case "github":
@@ -186,16 +187,41 @@ func main() {
 				convertToFastGit()
 			case "-h":
 			case "--help":
-				// TODO: HELP
-				fmt.Println("Help")
+				fmt.Println("" +
+					"FastGit Conv Command Line Tool\n" +
+					"==============================\n" +
+					"REMARKS\n" +
+					"    Convert upstream between github or fastgit automatically\n" +
+					"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
+					"SYNTAX\n" +
+					"    fgit conv [--help|-h]\n" +
+					"    fgit conv [github|gh|fastgit|fg]\n" +
+					"ALIASES\n" +
+					"    fgit convert\n" +
+					"EXAMPLE\n" +
+					"    fgit conv gh")
 			default:
-				fmt.Println("Unknown args")
+				fmt.Println("Invalid args for conv. Use --help to get more information.")
 			}
+		case 2:
+			fmt.Println("" +
+				"FastGit Conv Command Line Tool\n" +
+				"==============================\n" +
+				"REMARKS\n" +
+				"    Convert upstream between github or fastgit automatically\n" +
+				"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
+				"SYNTAX\n" +
+				"    fgit conv [--help|-h]\n" +
+				"    fgit conv [github|gh|fastgit|fg]\n" +
+				"ALIASES\n" +
+				"    fgit convert\n" +
+				"EXAMPLE\n" +
+				"    fgit conv gh")
 		}
 		os.Exit(0)
-	}
-
-	if os.Args[1] == "-v" || os.Args[1] == "--version" || os.Args[1] == "version" {
+	case "-v":
+	case "--version":
+	case "version":
 		showVersion()
 	}
 
@@ -307,12 +333,12 @@ startDown:
 			}
 		}
 	}
-	newUrl := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
-	if newUrl != url {
-		fmt.Println("Redirect ->", newUrl)
+	newURL := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
+	if newURL != url {
+		fmt.Println("Redirect ->", newURL)
 	}
 	fmt.Println("Downloading...")
-	resp, err := http.Get(newUrl)
+	resp, err := http.Get(newURL)
 	checkErr(err, "Http.Get create failed", 1)
 	defer resp.Body.Close()
 
