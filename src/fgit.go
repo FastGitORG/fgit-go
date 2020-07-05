@@ -45,6 +45,9 @@ func debug(url string) bool {
 		"FastGit Debug Command Line Tool\n" +
 		"===============================")
 	if url != "--help" && url != "-h" {
+		if !(strings.HasPrefix(url, "http://") || strings.HasPrefix(url, "https://")) {
+			url = "http://" + url
+		}
 		fmt.Println("Remote Address:", url)
 		fmt.Print("IP Address: ")
 		addr, err := net.LookupIP(strings.Replace(strings.Replace(url, "https://", "", -1), "http://", "", -1))
@@ -121,6 +124,31 @@ func checkErr(err error, msg string, exitCode int) {
 	}
 }
 
+func conv(target string) {
+	switch target {
+	case "gh", "github":
+		convertToGitHub()
+	case "fg", "fastgit":
+		convertToFastGit()
+	case "-h", "--help":
+		fmt.Println("" +
+			"FastGit Conv Command Line Tool\n" +
+			"==============================\n" +
+			"REMARKS\n" +
+			"    Convert upstream between github or fastgit automatically\n" +
+			"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
+			"SYNTAX\n" +
+			"    fgit conv [--help|-h]\n" +
+			"    fgit conv [github|gh|fastgit|fg]\n" +
+			"ALIASES\n" +
+			"    fgit convert\n" +
+			"EXAMPLE\n" +
+			"    fgit conv gh")
+	default:
+		fmt.Println("Invalid args for conv. Use --help to get more information.")
+	}
+}
+
 func main() {
 	if len(os.Args) == 1 || (len(os.Args) == 2 && (os.Args[1] == "--help" || os.Args[1] == "-h")) {
 		fmt.Println("" +
@@ -148,11 +176,7 @@ func main() {
 		case 2:
 			isConnectOk = debug("https://hub.fastgit.org")
 		case 3:
-			_i := os.Args[2]
-			if !(strings.HasPrefix(_i, "http://") || strings.HasPrefix(_i, "https://")) {
-				_i = "http://" + _i
-			}
-			isConnectOk = debug(_i)
+			isConnectOk = debug(os.Args[2])
 		default:
 			fmt.Println("Invalid args for debug. Use --help to get more information.")
 		}
@@ -176,42 +200,9 @@ func main() {
 		default:
 			fmt.Println("Invalid args for conv. Use --help to get more information.")
 		case 3:
-			switch os.Args[2] {
-			case "gh", "github":
-				convertToGitHub()
-			case "fg", "fastgit":
-				convertToFastGit()
-			case "-h", "--help":
-				fmt.Println("" +
-					"FastGit Conv Command Line Tool\n" +
-					"==============================\n" +
-					"REMARKS\n" +
-					"    Convert upstream between github or fastgit automatically\n" +
-					"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
-					"SYNTAX\n" +
-					"    fgit conv [--help|-h]\n" +
-					"    fgit conv [github|gh|fastgit|fg]\n" +
-					"ALIASES\n" +
-					"    fgit convert\n" +
-					"EXAMPLE\n" +
-					"    fgit conv gh")
-			default:
-				fmt.Println("Invalid args for conv. Use --help to get more information.")
-			}
+			conv(os.Args[2])
 		case 2:
-			fmt.Println("" +
-				"FastGit Conv Command Line Tool\n" +
-				"==============================\n" +
-				"REMARKS\n" +
-				"    Convert upstream between github or fastgit automatically\n" +
-				"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
-				"SYNTAX\n" +
-				"    fgit conv [--help|-h]\n" +
-				"    fgit conv [github|gh|fastgit|fg]\n" +
-				"ALIASES\n" +
-				"    fgit convert\n" +
-				"EXAMPLE\n" +
-				"    fgit conv gh")
+			conv("-h")
 		}
 		os.Exit(0)
 	case "-v", "--version", "version":
