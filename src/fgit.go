@@ -13,8 +13,9 @@ import (
 	"strings"
 )
 
-var timestamp string
-var version string
+// For -X Arg
+var timestamp = "unknown"
+var version = "unknown"
 
 func showVersion() {
 	fmt.Println("Version:", version)
@@ -133,7 +134,7 @@ func main() {
 			"    fgit debug [URL<string>] [--help|-h]\n" +
 			"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
 			"    fgit conv [Target<string>] [--help|-h]\n " +
-			"    If you wan to known more about extra-syntax, try to use --help")
+			"    If you want to known more about extra-syntax, try to use --help")
 		os.Exit(0)
 	}
 
@@ -329,6 +330,7 @@ startDown:
 	if newURL != url {
 		fmt.Println("Redirect ->", newURL)
 	}
+	fmt.Println("File ->", fpath)
 	fmt.Println("Downloading...")
 	resp, err := http.Get(newURL)
 	checkErr(err, "Http.Get create failed", 1)
