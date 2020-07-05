@@ -149,7 +149,7 @@ func main() {
 			isConnectOk = debug("https://hub.fastgit.org")
 		case 3:
 			_i := os.Args[2]
-			if strings.HasPrefix(_i, "https://") || strings.HasPrefix(_i, "https://") {
+			if !(strings.HasPrefix(_i, "http://") || strings.HasPrefix(_i, "https://")) {
 				_i = "http://" + _i
 			}
 			isConnectOk = debug(_i)
