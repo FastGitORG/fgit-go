@@ -16,7 +16,7 @@ jobs:
             Build AMD64
           command: |
             version=`cat version`
-            timestamp=`date +%Y-%m-%d %H:%M:%S`
+            timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
             GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\""" -o ~/release/fgit-windows-amd64.exe src/fgit.go 
@@ -28,7 +28,7 @@ jobs:
             Build 386
           command: |
             version=`cat version`
-            timestamp=`date +%Y-%m-%d %H:%M:%S`
+            timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
             GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe src/fgit.go 
@@ -39,7 +39,7 @@ jobs:
             Build ARM
           command: |
             version=`cat version`
-            timestamp=`date +%Y-%m-%d %H:%M:%S`
+            timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
             GOARCH=arm GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm src/fgit.go 
@@ -49,7 +49,7 @@ jobs:
             Build ARM64
           command: |
             version=`cat version`
-            timestamp=`date +%Y-%m-%d %H:%M:%S`
+            timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
             GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 src/fgit.go 
