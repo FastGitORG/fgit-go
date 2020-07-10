@@ -136,7 +136,7 @@ func conv(target string) {
 			"==============================\n" +
 			"REMARKS\n" +
 			"    Convert upstream between github or fastgit automatically\n" +
-			"    github and gh means convert to github, fastgit and fg means convert to fastgit" +
+			"    github and gh means convert to github, fastgit and fg means convert to fastgit\n" +
 			"SYNTAX\n" +
 			"    fgit conv [--help|-h]\n" +
 			"    fgit conv [github|gh|fastgit|fg]\n" +
