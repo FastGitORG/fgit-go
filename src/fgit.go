@@ -107,9 +107,20 @@ func convertHelper(oldPrefixValue, newPrefixValue string) bool {
 	isReplaceDo := false
 	sb := new(bytes.Buffer)
 	iniArray := strings.Split(gitConfig, "\n")
+	
+	iniNewStr := ""
+	
 	for i := range iniArray {
-		iniArray[i] = strings.Replace(iniArray[i], oldPrefixValue, newPrefixValue, 1)
-		isReplaceDo = true
+		if strings.Trim(iniArray[i], "") == "" {
+			// drop useless lines
+			// sb.WriteString(iniArray[i] + "\n")
+			continue
+		}
+		iniNewStr = strings.Replace(iniArray[i], oldPrefixValue, newPrefixValue, 1)
+		if iniArray[i] != iniNewStr {
+			iniArray[i] = iniNewStr
+			isReplaceDo = true
+		}
 		sb.WriteString(iniArray[i] + "\n")
 	}
 	fi.Write(sb.Bytes())
