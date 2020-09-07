@@ -2,8 +2,8 @@
 
 # fgit-go
 
-[![CircleCI](https://circleci.com/gh/fastgitorg/fgit-go/tree/master.svg?style=svg)](https://circleci.com/gh/fastgitorg/fgit-go/tree/master)
-[![LGBT-CN](https://img.shields.io/badge/Support-LGBTQIA-FF0000?style=flat-square)](https://git.io/JfJiO)
+[![CircleCI](https://circleci.com/gh/FastGitORG/fgit-go/tree/master.svg?style=shield)](https://circleci.com/gh/FastGitORG/fgit-go/tree/master)
+[![LGBT-CN](https://img.shields.io/badge/Support-LGBTQIA-FF0000)](https://git.io/JfJiO)
 
 Command line to do git operation with FastGit.
 
