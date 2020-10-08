@@ -1,7 +1,6 @@
 package main
 
 import (
-	"bytes"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -96,35 +95,26 @@ func convertToGitHub() bool {
 }
 
 func convertHelper(oldPrefixValue, newPrefixValue string) bool {
-	fi, err := os.Open(path.Join(".git", "config"))
-	checkErr(err, "This is not a git path! Cannot push!", 1)
-	defer fi.Close()
-
-	gitConfigByte, err := ioutil.ReadFile(path.Join(".git", "config"))
-	checkErr(err, "Cannot read .git config file!", 3)
-	gitConfig := string(gitConfigByte)
-
-	isReplaceDo := false
-	sb := new(bytes.Buffer)
-	iniArray := strings.Split(gitConfig, "\n")
-	
-	iniNewStr := ""
-	
-	for i := range iniArray {
-		if strings.Trim(iniArray[i], "") == "" {
-			// drop useless lines
-			// sb.WriteString(iniArray[i] + "\n")
-			continue
+	cmd := exec.Command("git", "remote", "-v")
+	buf, err := cmd.Output()
+	sBuf := string(buf)
+	originUrl := ""
+	checkErr(err, "Convert failed.", 8)
+	tmp := strings.Split(strings.Replace(strings.Replace(sBuf, "\t", " ", -1), "  ", " ", -1), " ")
+	for i := range tmp {
+		if strings.HasPrefix(tmp[i], oldPrefixValue) {
+			originUrl = tmp[i]
+			break
 		}
-		iniNewStr = strings.Replace(iniArray[i], oldPrefixValue, newPrefixValue, 1)
-		if iniArray[i] != iniNewStr {
-			iniArray[i] = iniNewStr
-			isReplaceDo = true
-		}
-		sb.WriteString(iniArray[i] + "\n")
 	}
-	fi.Write(sb.Bytes())
-	return isReplaceDo
+	if originUrl == "" {
+		return false
+	}
+	fmt.Println(originUrl)
+	cmd = exec.Command("git", "remote", "set-url", "origin", strings.Replace(originUrl, oldPrefixValue, newPrefixValue, 1))
+	_, err = cmd.Output()
+	checkErr(err, "Convert failed.", 8)
+	return true
 }
 
 func checkErr(err error, msg string, exitCode int) {
