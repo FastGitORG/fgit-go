@@ -324,13 +324,20 @@ startDown:
 	}
 	fmt.Println("File ->", fpath)
 	fmt.Println("Downloading...")
-	resp, err := http.Get(newURL)
-	checkErr(err, "Http.Get create failed", 1)
+
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", newURL, nil)
+	checkErr(err, "Http.Get create failed!", 1)
+	req.Header.Set("User-Agent", "fgit/"+version)
+
+	resp, err := client.Do(req)
 	defer resp.Body.Close()
+	checkErr(err, "Http request failed!", 1)
 
 	out, err := os.Create(fpath)
-	checkErr(err, "File create failed", 1)
+	checkErr(err, "File create failed!", 1)
 	defer out.Close()
+
 	_, err = io.Copy(out, resp.Body)
 	checkErr(err, "io.Copy failed!", 1)
 	fmt.Println("Finished.")
