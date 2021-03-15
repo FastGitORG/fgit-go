@@ -52,7 +52,7 @@ func downloadFile(url, fpath string) {
 				os.Remove(fpath)
 				goto startDown
 			case "n":
-				fmt.Println("User cancle the operation.")
+				fmt.Println("User canceled the operation.")
 				os.Exit(0)
 			default:
 				fmt.Println("Unknown input, exiting...")
