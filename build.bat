@@ -22,34 +22,34 @@ set GOARCH=amd64
 
 set GOOS=windows
 echo --^> Compiling Windows
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-amd64.exe src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-amd64.exe .\src
 set GOOS=darwin
 echo --^> Compiling Darwin
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-darwin-amd64 src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-darwin-amd64 .\src
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-amd64 src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-amd64 .\src
 
 set GOARCH=386
 echo -^> Compiling 386
 set GOOS=windows
 echo --^> Compiling Windows
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-386.exe src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-386.exe .\src
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-386 src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-386 .\src
 
 
 set GOARCH=arm
 echo -^> Compiling ARM
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm .\src
 
 set GOARCH=arm64
 echo -^> Compiling ARM64
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm64 src\fgit.go 
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm64 .\src
 
 pause
