@@ -19,7 +19,7 @@ jobs:
             timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
-            GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-amd64.exe .\src
+            GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-amd64.exe ./src
             GOARCH=amd64 GOOS=darwin go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-darwin-amd64 ./src
             GOARCH=amd64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-amd64 ./src
 
@@ -31,7 +31,7 @@ jobs:
             timestamp=`date "+%Y-%m-%d %H:%M:%S"`
             echo "version -> $version"
             echo "timestamp -> $timestamp"
-            GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe .\src
+            GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe ./src
             GOARCH=386 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-386 ./src
 
       - run:
