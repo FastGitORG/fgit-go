@@ -48,7 +48,7 @@ func getFile(url, fpath string) {
 			switch strings.ToLower(string(isContinue)) {
 			case "y":
 				os.Remove(fpath)
-				goto startDown
+				// goto startDown
 			case "n":
 				fmt.Println("User canceled the operation.")
 				os.Exit(0)
@@ -60,7 +60,7 @@ func getFile(url, fpath string) {
 		}
 	}
 
-startDown:
+	// startDown:
 	if strings.HasPrefix(url, "https://github.com/") {
 		query := strings.Replace(url, "https://github.com/", "", -1)
 		querySplit := strings.Split(query, "/")
