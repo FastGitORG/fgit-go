@@ -48,6 +48,7 @@ func getFile(url, fpath string) {
 			switch strings.ToLower(string(isContinue)) {
 			case "y":
 				os.Remove(fpath)
+				break
 				// goto startDown
 			case "n":
 				fmt.Println("User canceled the operation.")
