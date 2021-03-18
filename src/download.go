@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"net/http"
 	"os"
 	"path"
 	"strings"
@@ -27,11 +25,11 @@ func get(url, fpath string) {
 			"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip")
 		os.Exit(0)
 	} else {
-		downloadFile(url, fpath)
+		getFile(url, fpath)
 	}
 }
 
-func downloadFile(url, fpath string) {
+func getFile(url, fpath string) {
 	urlSplit := strings.Split(url, "/")
 	filename := urlSplit[len(urlSplit)-1]
 	if fpath == "" {
@@ -92,21 +90,8 @@ startDown:
 	fmt.Println("File ->", fpath)
 	fmt.Println("Downloading...")
 
-	client := &http.Client{}
-	req, err := http.NewRequest("GET", newURL, nil)
-	checkErr(err, "Http.Get create failed!", 1)
-	req.Header.Set("User-Agent", "fgit/"+version)
+	downloadFile(newURL, fpath)
 
-	resp, err := client.Do(req)
-	defer resp.Body.Close()
-	checkErr(err, "Http request failed!", 1)
-
-	out, err := os.Create(fpath)
-	checkErr(err, "File create failed!", 1)
-	defer out.Close()
-
-	_, err = io.Copy(out, resp.Body)
-	checkErr(err, "io.Copy failed!", 1)
 	fmt.Println("Finished.")
 	os.Exit(0)
 }

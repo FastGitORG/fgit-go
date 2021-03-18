@@ -51,19 +51,3 @@ func parseUrl(url string) string {
 	fmt.Println(url)
 	return url
 }
-
-func replaceNth(s, old, new string, n int) string {
-	i := 0
-	for m := 1; m <= n; m++ {
-		x := strings.Index(s[i:], old)
-		if x < 0 {
-			break
-		}
-		i += x
-		if m == n {
-			return s[:i] + new + s[i+len(old):]
-		}
-		i += len(old)
-	}
-	return s
-}
