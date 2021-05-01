@@ -10,13 +10,13 @@ Command line to do git operation with FastGit.
 ## What works
 
 - Stdout/stderr  
-Real-time display has been tested in Windows 10(build 1809)
+Real-time display has been tested in Windows 10 (build 1809)
 
 - Push  
-*`fgit push`* command had been tested in Windows 10(build 1809)
+*`fgit push`* command had been tested in Windows 10 (build 1809)
 
 - Clone  
-*`fgit clone GITHUB_URL`* command had been tested in Windows 10(build 1809)
+*`fgit clone GITHUB_URL`* command had been tested in Windows 10 (build 1809)
 
 ## Preparation
 
