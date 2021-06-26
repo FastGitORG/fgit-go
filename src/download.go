@@ -61,24 +61,10 @@ func getFile(url, fpath string) {
 		}
 	}
 
-	// startDown:
-	if strings.HasPrefix(url, "https://github.com/") {
-		query := strings.Replace(url, "https://github.com/", "", -1)
-		querySplit := strings.Split(query, "/")
-		if len(querySplit) > 3 {
-			// Source -> fastgitorg/fgit-go/blob/master/fgit.go
-			// Target -> fastgitorg/fgit-go/master/fgit.go
-			if querySplit[2] == "blob" {
-				url = rawMirror
-				for _i, _s := range querySplit {
-					if _i != 2 {
-						url += "/" + _s
-					}
-				}
-				fmt.Println("Redirect ->", url)
-			}
-		}
-	}
+	url = parseGetUrl(url)
+
+	fmt.Println("Redirect ->", url)
+
 	newURL := strings.Replace(url, "https://github.com", downloadMirror, -1)
 	if newURL != url {
 		fmt.Println("Redirect ->", newURL)
@@ -90,4 +76,25 @@ func getFile(url, fpath string) {
 
 	fmt.Println("Finished.")
 	os.Exit(0)
+}
+
+func parseGetUrl(url string) string {
+	if !strings.HasPrefix(url, "https://github.com/") {
+		return url
+	}
+	query := strings.Replace(url, "https://github.com/", "", -1)
+	querySplit := strings.Split(query, "/")
+	if len(querySplit) > 3 {
+		// Source -> fastgitorg/fgit-go/blob/master/fgit.go
+		// Target -> fastgitorg/fgit-go/master/fgit.go
+		if querySplit[2] == "blob" {
+			url = rawMirror
+			for _i, _s := range querySplit {
+				if _i != 2 {
+					url += "/" + _s
+				}
+			}
+		}
+	}
+	return url
 }
