@@ -7,5 +7,7 @@ var (
 )
 
 var (
-	gitMirror = "https://hub.fastgit.org"
+	gitMirror      = "https://hub.fastgit.org"
+	downloadMirror = "https://download.fastgit.org"
+	rawMirror      = "https://raw.fastgit.org"
 )

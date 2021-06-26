@@ -69,22 +69,17 @@ func getFile(url, fpath string) {
 			// Source -> fastgitorg/fgit-go/blob/master/fgit.go
 			// Target -> fastgitorg/fgit-go/master/fgit.go
 			if querySplit[2] == "blob" {
-				url = "https://raw.fastgit.org/"
+				url = rawMirror
 				for _i, _s := range querySplit {
 					if _i != 2 {
-						// not /blob/
-						if _i == len(querySplit)-1 {
-							url += _s
-						} else {
-							url += _s + "/"
-						}
+						url += "/" + _s
 					}
 				}
 				fmt.Println("Redirect ->", url)
 			}
 		}
 	}
-	newURL := strings.Replace(url, "https://github.com", "https://download.fastgit.org", -1)
+	newURL := strings.Replace(url, "https://github.com", downloadMirror, -1)
 	if newURL != url {
 		fmt.Println("Redirect ->", newURL)
 	}
