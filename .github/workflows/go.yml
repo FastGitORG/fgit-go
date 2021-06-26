@@ -53,7 +53,43 @@ jobs:
         echo "timestamp -> $timestamp"
         GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 ./src
 
-    - name: Upload Artifacts
+    - name: Upload Artifact (Windows x64)
       uses: actions/upload-artifact@v2.2.4
       with:
-        path: ~/release/*
+        name: fgit-windows-amd64.exe
+        path: ~/release/fgit-windows-amd64.exe
+
+    - name: Upload Artifact (Darwin x64)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-darwin-amd64
+        path: ~/release/fgit-darwin-amd64
+
+    - name: Upload Artifact (Linux x64)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-linux-amd64
+        path: ~/release/fgit-linux-amd64
+    
+    - name: Upload Artifact (Linux i386)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-linux-386
+        path: ~/release/fgit-linux-386
+    - name: Upload Artifact (Windows i386)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-windows-386.exe
+        path: ~/release/fgit-windows-386.exe
+        
+    - name: Upload Artifact (Linux arm)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-linux-arm
+        path: ~/release/fgit-linux-arm
+    - name: Upload Artifact (Linux arm64)
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: fgit-linux-arm64
+        path: ~/release/fgit-linux-arm64
+
