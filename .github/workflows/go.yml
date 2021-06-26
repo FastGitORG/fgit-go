@@ -52,3 +52,9 @@ jobs:
         echo "version -> $version"
         echo "timestamp -> $timestamp"
         GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 ./src
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        name: Release
+        path: ~/release
