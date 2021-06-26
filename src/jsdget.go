@@ -23,11 +23,11 @@ func jsdget(url string, fpath string) {
 			"    fgit jsdget https://github.com/fastgitorg/fgit-go/archive/master.zip")
 		os.Exit(0)
 	} else {
-		downloadFile(parseUrl(url), fpath)
+		downloadFile(parseToJsdUrl(url), fpath)
 	}
 }
 
-func parseUrl(url string) string {
+func parseToJsdUrl(url string) string {
 	u := strings.Split(url, "//")
 	switch len(u) {
 	case 1:

@@ -61,7 +61,7 @@ func getFile(url, fpath string) {
 		}
 	}
 
-	url = parseGetUrl(url)
+	url = parseToGetUrl(url)
 
 	fmt.Println("Redirect ->", url)
 
@@ -78,7 +78,7 @@ func getFile(url, fpath string) {
 	os.Exit(0)
 }
 
-func parseGetUrl(url string) string {
+func parseToGetUrl(url string) string {
 	if !strings.HasPrefix(url, "https://github.com/") {
 		return url
 	}
