@@ -51,23 +51,23 @@ func main() {
 		}
 	case "get", "dl", "download":
 		switch len(os.Args) {
-		default:
-			get("", "")
 		case 3:
 			get(os.Args[2], "")
 		case 4:
 			get(os.Args[2], os.Args[3])
+		default:
+			get("", "")
 		}
 		os.Exit(0)
 	case "jdl", "jsdget":
 		{
 			switch len(os.Args) {
-			default:
-				jsdget("", "")
 			case 3:
 				jsdget(os.Args[2], "")
 			case 4:
 				jsdget(os.Args[2], os.Args[3])
+			default:
+				jsdget("", "")
 			}
 		}
 	case "conv", "convert":
