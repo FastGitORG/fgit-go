@@ -21,8 +21,8 @@ on:
     - cron: '44 23 * * 1'
 
 jobs:
-  analyze:
-    name: Analyze
+  analyse:
+    name: Analyse
     runs-on: ubuntu-latest
     permissions:
       actions: read
@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v2
 
     # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
+    - name: Initialise CodeQL
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
