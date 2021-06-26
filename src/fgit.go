@@ -7,10 +7,6 @@ import (
 	"strings"
 )
 
-// For -X Arg
-var timestamp = "unknown"
-var version = "unknown"
-
 func showVersion() {
 	fmt.Println("Version:", version)
 	fmt.Println("Build Time:", timestamp)
