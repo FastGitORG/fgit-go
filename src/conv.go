@@ -7,11 +7,11 @@ import (
 )
 
 func convertToFastGit() bool {
-	return convertHelper("https://github.com", "https://hub.fastgit.org")
+	return convertHelper("https://github.com", gitMirror)
 }
 
 func convertToGitHub() bool {
-	return convertHelper("https://hub.fastgit.org", "https://github.com")
+	return convertHelper(gitMirror, "https://github.com")
 }
 
 func conv(target string) {
