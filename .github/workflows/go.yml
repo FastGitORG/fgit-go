@@ -1,0 +1,57 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.16
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Build AMD64
+      run: |
+        version=`cat version`
+        timestamp=`date "+%Y-%m-%d %H:%M:%S"`
+        echo "version -> $version"
+        echo "timestamp -> $timestamp"
+        GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-amd64.exe ./src
+        GOARCH=amd64 GOOS=darwin go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-darwin-amd64 ./src
+        GOARCH=amd64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-amd64 ./src
+
+    - name: Build 386
+      run: |
+        version=`cat version`
+        timestamp=`date "+%Y-%m-%d %H:%M:%S"`
+        echo "version -> $version"
+        echo "timestamp -> $timestamp"
+        GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe ./src
+        GOARCH=386 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-386 ./src
+
+    - name: Build ARM
+      run: |
+        version=`cat version`
+        timestamp=`date "+%Y-%m-%d %H:%M:%S"`
+        echo "version -> $version"
+        echo "timestamp -> $timestamp"
+        GOARCH=arm GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm ./src
+
+    - name: Build ARM64
+      run: |
+        version=`cat version`
+        timestamp=`date "+%Y-%m-%d %H:%M:%S"`
+        echo "version -> $version"
+        echo "timestamp -> $timestamp"
+        GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 ./src
