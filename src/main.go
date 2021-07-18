@@ -48,7 +48,7 @@ func main() {
 			get("", "")
 		}
 		os.Exit(0)
-	case "jdl", "jsdget":
+	case "jdl", "jsdget", "jsd":
 		runByArgs(&JsdFunc{})
 
 	case "conv", "convert":
