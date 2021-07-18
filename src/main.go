@@ -22,7 +22,7 @@ func main() {
 	isConvertToFastGit := false
 	isPushOrPull := false
 
-	switch os.Args[1] {
+	switch strings.ToLower(os.Args[1]) {
 	case "debug":
 		var isConnectOk bool
 		switch len(os.Args) {
