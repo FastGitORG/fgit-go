@@ -5,8 +5,29 @@ import (
 	"io/ioutil"
 	"net"
 	"net/http"
+	"os"
 	"strings"
 )
+
+type DebugFunc struct {
+}
+
+func (d *DebugFunc) Run(args []string) {
+	var isConnectOk bool
+	switch len(args) {
+	case 0:
+		isConnectOk = debug("https://hub.fastgit.org")
+	case 1:
+		isConnectOk = debug(os.Args[0])
+	default:
+		fmt.Println("Invalid args for debug. Use --help to get more information.")
+	}
+	if isConnectOk {
+		os.Exit(0)
+	} else {
+		os.Exit(1)
+	}
+}
 
 func debugConnection(url string) bool {
 	fmt.Print("Test connection...")

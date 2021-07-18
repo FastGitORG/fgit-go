@@ -24,20 +24,8 @@ func main() {
 
 	switch strings.ToLower(os.Args[1]) {
 	case "debug":
-		var isConnectOk bool
-		switch len(os.Args) {
-		case 2:
-			isConnectOk = debug("https://hub.fastgit.org")
-		case 3:
-			isConnectOk = debug(os.Args[2])
-		default:
-			fmt.Println("Invalid args for debug. Use --help to get more information.")
-		}
-		if isConnectOk {
-			os.Exit(0)
-		} else {
-			os.Exit(1)
-		}
+		runByArgs(&DebugFunc{})
+
 	case "get", "dl", "download":
 		switch len(os.Args) {
 		case 3:
