@@ -60,16 +60,15 @@ func main() {
 		}
 		os.Exit(0)
 	case "jdl", "jsdget":
-		{
-			switch len(os.Args) {
-			case 3:
-				jsdget(os.Args[2], "")
-			case 4:
-				jsdget(os.Args[2], os.Args[3])
-			default:
-				jsdget("", "")
-			}
+		switch len(os.Args) {
+		case 3:
+			jsdget(os.Args[2], "")
+		case 4:
+			jsdget(os.Args[2], os.Args[3])
+		default:
+			jsdget("", "")
 		}
+
 	case "conv", "convert":
 		switch len(os.Args) {
 		default:
