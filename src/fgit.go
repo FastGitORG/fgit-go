@@ -49,14 +49,7 @@ func main() {
 		}
 		os.Exit(0)
 	case "jdl", "jsdget":
-		switch len(os.Args) {
-		case 3:
-			jsdget(os.Args[2], "")
-		case 4:
-			jsdget(os.Args[2], os.Args[3])
-		default:
-			jsdget("", "")
-		}
+		runByArgs(&JsdFunc{})
 
 	case "conv", "convert":
 		switch len(os.Args) {
@@ -102,4 +95,8 @@ func main() {
 	if isConvertToFastGit {
 		convToGitHub()
 	}
+}
+
+func runByArgs(fb IFuncBase) {
+	fb.Run(os.Args[3:])
 }

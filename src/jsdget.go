@@ -6,6 +6,20 @@ import (
 	"strings"
 )
 
+type JsdFunc struct {
+}
+
+func (j *JsdFunc) Run(args []string) {
+	switch len(args) {
+	case 0:
+		jsdget("", "")
+	case 1:
+		jsdget(args[0], "")
+	case 2:
+		jsdget(args[0], args[1])
+	}
+}
+
 func jsdget(url string, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println(jsdHelpMsg)
