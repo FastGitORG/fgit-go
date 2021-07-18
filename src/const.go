@@ -10,7 +10,8 @@ const (
 		"EXTRA-SYNTAX\n" +
 		"    fgit debug [URL<string>] [--help|-h]\n" +
 		"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
-		"    fgit conv [Target<string>] [--help|-h]\n " +
+		"    fgit conv [Target<string>] [--help|-h]\n" +
+		"    fgit jsdget [URL<string>] [Path<string>]\n" +
 		"    If you want to known more about extra-syntax, try to use --help"
 	jsdHelpMsg = "FastGit JsdGet Command Line Tool\n" +
 		"=============================\n" +
@@ -21,6 +22,7 @@ const (
 		"    fgit jsdget [URL<string>]\n" +
 		"    fgit jsdget [URL<string>] [Path<string>]\n" +
 		"ALIASES\n" +
+		"    fgit jdl\n" +
 		"    fgit jdl\n" +
 		"EXAMPLE\n" +
 		"    fgit jsdget https://github.com/fastgitorg/fgit-go/archive/master.zip"
