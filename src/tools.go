@@ -91,4 +91,5 @@ func replacePrefix(str, prefix, after string) string {
 	if strings.HasPrefix(str, prefix) {
 		return after + str[len(prefix)+1:]
 	}
+	return str
 }
