@@ -21,19 +21,7 @@ func conv(target string) {
 	case "fg", "fastgit":
 		convToFastGit()
 	case "-h", "--help":
-		fmt.Println("" +
-			"FastGit Conv Command Line Tool\n" +
-			"==============================\n" +
-			"REMARKS\n" +
-			"    Convert upstream between github or fastgit automatically\n" +
-			"    github and gh means convert to github, fastgit and fg means convert to fastgit\n" +
-			"SYNTAX\n" +
-			"    fgit conv [--help|-h]\n" +
-			"    fgit conv [github|gh|fastgit|fg]\n" +
-			"ALIASES\n" +
-			"    fgit convert\n" +
-			"EXAMPLE\n" +
-			"    fgit conv gh")
+		fmt.Println(convHelpMsg)
 	default:
 		fmt.Println("Invalid args for conv. Use --help to get more information.")
 	}

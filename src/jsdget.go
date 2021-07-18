@@ -8,19 +8,7 @@ import (
 
 func jsdget(url string, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
-		fmt.Println("" +
-			"FastGit JsdGet Command Line Tool\n" +
-			"=============================\n" +
-			"REMARKS\n" +
-			"    Download with jsDelivr automatically\n" +
-			"SYNTAX\n" +
-			"    fgit [--help|-h]\n" +
-			"    fgit jsdget [URL<string>]\n" +
-			"    fgit jsdget [URL<string>] [Path<string>]\n" +
-			"ALIASES\n" +
-			"    fgit jdl\n" +
-			"EXAMPLE\n" +
-			"    fgit jsdget https://github.com/fastgitorg/fgit-go/archive/master.zip")
+		fmt.Println(jsdHelpMsg)
 		os.Exit(0)
 	} else {
 		downloadFile(parseToJsdUrl(url), fpath)

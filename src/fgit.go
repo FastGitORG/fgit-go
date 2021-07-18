@@ -15,18 +15,7 @@ func showVersion() {
 
 func main() {
 	if len(os.Args) == 1 || (len(os.Args) == 2 && (os.Args[1] == "--help" || os.Args[1] == "-h")) {
-		fmt.Println("" +
-			"FastGit Command Line Tool\n" +
-			"=========================\n" +
-			"REMARKS\n" +
-			"    We will convert GitHub to FastGit automatically\n" +
-			"    Do everything like git\n" +
-			"    Build by KevinZonda with GoLang\n" +
-			"EXTRA-SYNTAX\n" +
-			"    fgit debug [URL<string>] [--help|-h]\n" +
-			"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
-			"    fgit conv [Target<string>] [--help|-h]\n " +
-			"    If you want to known more about extra-syntax, try to use --help")
+		fmt.Println(mainHelpMsg)
 		os.Exit(0)
 	}
 

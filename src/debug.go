@@ -26,10 +26,10 @@ func debugConnection(url string) bool {
 }
 
 func debug(url string) bool {
-	fmt.Println("" +
-		"FastGit Debug Command Line Tool\n" +
-		"===============================")
 	if url != "--help" && url != "-h" {
+		fmt.Println("" +
+			"FastGit Debug Command Line Tool\n" +
+			"===============================")
 		if !(strings.HasPrefix(url, "http://") || strings.HasPrefix(url, "https://")) {
 			url = "http://" + url
 		}
@@ -58,16 +58,7 @@ func debug(url string) bool {
 
 		return debugConnection(url)
 	} else {
-		fmt.Println("" +
-			"SYNTAX\n" +
-			"    fgit debug [URL<string>] [--help|-h]\n" +
-			"REMARKS\n" +
-			"    URL is an optional parameter\n" +
-			"    We debug https://hub.fastgit.org by default\n" +
-			"    If you want to debug another URL, enter URL param\n" +
-			"EXAMPLE\n" +
-			"    fgit debug\n" +
-			"    fgit debug https://fastgit.org")
+		fmt.Println(debugHelpMsg)
 		return true
 	}
 }

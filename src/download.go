@@ -9,20 +9,7 @@ import (
 
 func get(url, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
-		fmt.Println("" +
-			"FastGit Get Command Line Tool\n" +
-			"=============================\n" +
-			"REMARKS\n" +
-			"    Download with FastGit automatically\n" +
-			"SYNTAX\n" +
-			"    fgit [--help|-h]\n" +
-			"    fgit get [URL<string>]\n" +
-			"    fgit get [URL<string>] [Path<string>]\n" +
-			"ALIASES\n" +
-			"    fgit dl\n" +
-			"    fgit download\n" +
-			"EXAMPLE\n" +
-			"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip")
+		fmt.Println(getHelpMsg)
 		os.Exit(0)
 	} else {
 		getFile(url, fpath)
