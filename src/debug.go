@@ -48,9 +48,9 @@ func debugConnection(url string) bool {
 
 func debug(url string) bool {
 	if url != "--help" && url != "-h" {
-		fmt.Println("" +
+		fmt.Println(
 			"FastGit Debug Command Line Tool\n" +
-			"===============================")
+				"===============================")
 		if !(strings.HasPrefix(url, "http://") || strings.HasPrefix(url, "https://")) {
 			url = "http://" + url
 		}
@@ -76,7 +76,6 @@ func debug(url string) bool {
 				fmt.Printf("[%s]\n", strings.Replace(string(s), "\n", "", -1))
 			}
 		}
-
 		return debugConnection(url)
 	} else {
 		fmt.Println(debugHelpMsg)

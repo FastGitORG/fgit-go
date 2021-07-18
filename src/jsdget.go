@@ -32,8 +32,6 @@ func jsdget(url string, path string) {
 func parseToJsdUrl(url string) string {
 	u := strings.Split(url, "//")
 	switch len(u) {
-	case 1:
-		break
 	case 2:
 		url = u[1]
 	case 3:

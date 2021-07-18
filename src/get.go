@@ -25,7 +25,6 @@ func (g *GetFunc) Run(args []string) {
 func get(url, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println(getHelpMsg)
-		os.Exit(0)
 	} else {
 		getFile(url, fpath)
 	}
