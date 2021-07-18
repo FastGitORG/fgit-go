@@ -33,15 +33,7 @@ func main() {
 		runByArgs(&JsdFunc{})
 
 	case "conv", "convert":
-		switch len(os.Args) {
-		default:
-			fmt.Println("Invalid args for conv. Use --help to get more information.")
-		case 3:
-			conv(os.Args[2])
-		case 2:
-			conv("-h")
-		}
-		os.Exit(0)
+		runByArgs(&ConvFunc{})
 	case "-v", "--version", "version":
 		showVersion()
 	}

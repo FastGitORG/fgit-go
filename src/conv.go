@@ -2,10 +2,25 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"os/exec"
 	"strings"
 )
 
+type ConvFunc struct {
+}
+
+func (c *ConvFunc) Run(args []string) {
+	switch len(args) {
+	case 1:
+		conv(args[0])
+	case 0:
+		conv("-h")
+	default:
+		fmt.Println("Invalid args for conv. Use --help to get more information.")
+	}
+	os.Exit(0)
+}
 func convToFastGit() bool {
 	return convHelper("https://github.com", gitMirror)
 }
