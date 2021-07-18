@@ -20,7 +20,6 @@ func main() {
 	}
 
 	isConvertToFastGit := false
-	isPushOrPull := false
 
 	switch strings.ToLower(os.Args[1]) {
 	case "debug":
@@ -34,18 +33,12 @@ func main() {
 
 	case "conv", "convert":
 		runByArgs(&ConvFunc{})
+
 	case "-v", "--version", "version":
 		showVersion()
 	}
 
-	for i := range os.Args {
-		if os.Args[i] == "push" || os.Args[i] == "pull" {
-			isPushOrPull = true
-			break
-		}
-	}
-
-	if isPushOrPull {
+	if os.Args[2] == "push" || os.Args[2] == "pull" {
 		isConvertToFastGit = convToFastGit()
 	}
 
