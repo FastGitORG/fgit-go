@@ -92,7 +92,7 @@ func main() {
 	}
 
 	if isPushOrPull {
-		isConvertToFastGit = convertToFastGit()
+		isConvertToFastGit = convToFastGit()
 	}
 
 	cmd := exec.Command("git")
@@ -112,6 +112,6 @@ func main() {
 
 	cmd.Wait()
 	if isConvertToFastGit {
-		convertToGitHub()
+		convToGitHub()
 	}
 }

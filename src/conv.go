@@ -6,20 +6,20 @@ import (
 	"strings"
 )
 
-func convertToFastGit() bool {
-	return convertHelper("https://github.com", gitMirror)
+func convToFastGit() bool {
+	return convHelper("https://github.com", gitMirror)
 }
 
-func convertToGitHub() bool {
-	return convertHelper(gitMirror, "https://github.com")
+func convToGitHub() bool {
+	return convHelper(gitMirror, "https://github.com")
 }
 
 func conv(target string) {
 	switch target {
 	case "gh", "github":
-		convertToGitHub()
+		convToGitHub()
 	case "fg", "fastgit":
-		convertToFastGit()
+		convToFastGit()
 	case "-h", "--help":
 		fmt.Println("" +
 			"FastGit Conv Command Line Tool\n" +
@@ -39,7 +39,7 @@ func conv(target string) {
 	}
 }
 
-func convertHelper(oldPrefixValue, newPrefixValue string) bool {
+func convHelper(oldPrefixValue, newPrefixValue string) bool {
 	cmd := exec.Command("git", "remote", "-v")
 	buf, err := cmd.Output()
 	sBuf := string(buf)
