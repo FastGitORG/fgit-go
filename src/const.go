@@ -18,7 +18,7 @@ const (
 		"REMARKS\n" +
 		"    Download with jsDelivr automatically\n" +
 		"SYNTAX\n" +
-		"    fgit [--help|-h]\n" +
+		"    fgit jsdget [--help|-h]\n" +
 		"    fgit jsdget [URL<string>]\n" +
 		"    fgit jsdget [URL<string>] [Path<string>]\n" +
 		"ALIASES\n" +
@@ -31,7 +31,7 @@ const (
 		"REMARKS\n" +
 		"    Download with FastGit automatically\n" +
 		"SYNTAX\n" +
-		"    fgit [--help|-h]\n" +
+		"    fgit get [--help|-h]\n" +
 		"    fgit get [URL<string>]\n" +
 		"    fgit get [URL<string>] [Path<string>]\n" +
 		"ALIASES\n" +
@@ -42,7 +42,8 @@ const (
 	debugHelpMsg = "FastGit Debug Command Line Tool\n" +
 		"===============================\n" +
 		"SYNTAX\n" +
-		"    fgit debug [URL<string>] [--help|-h]\n" +
+		"    fgit debug [--help|-h]\n" +
+		"    fgit debug [URL<string>]\n" +
 		"REMARKS\n" +
 		"    URL is an optional parameter\n" +
 		"    We debug https://hub.fastgit.org by default\n" +
@@ -53,8 +54,8 @@ const (
 	convHelpMsg = "FastGit Conv Command Line Tool\n" +
 		"==============================\n" +
 		"REMARKS\n" +
-		"    Convert upstream between github or fastgit automatically\n" +
-		"    github and gh means convert to github, fastgit and fg means convert to fastgit\n" +
+		"    Convert upstream between GitHub or FastGit UK automatically\n" +
+		"    github and gh means convert to GitHub, fastgit and fg means convert to FastGit\n" +
 		"SYNTAX\n" +
 		"    fgit conv [--help|-h]\n" +
 		"    fgit conv [github|gh|fastgit|fg]\n" +
