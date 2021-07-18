@@ -7,6 +7,21 @@ import (
 	"strings"
 )
 
+type GetFunc struct {
+}
+
+func (g *GetFunc) Run(args []string) {
+	switch len(args) {
+	case 1:
+		get(args[0], "")
+	case 2:
+		get(os.Args[0], os.Args[1])
+	default:
+		get("", "")
+	}
+	os.Exit(0)
+}
+
 func get(url, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println(getHelpMsg)

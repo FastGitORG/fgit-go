@@ -27,15 +27,8 @@ func main() {
 		runByArgs(&DebugFunc{})
 
 	case "get", "dl", "download":
-		switch len(os.Args) {
-		case 3:
-			get(os.Args[2], "")
-		case 4:
-			get(os.Args[2], os.Args[3])
-		default:
-			get("", "")
-		}
-		os.Exit(0)
+		runByArgs(&GetFunc{})
+
 	case "jdl", "jsdget", "jsd":
 		runByArgs(&JsdFunc{})
 
