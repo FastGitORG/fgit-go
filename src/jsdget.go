@@ -18,12 +18,12 @@ func (j *JsdFunc) Run(args []string) {
 	case 2:
 		jsdget(args[0], args[1])
 	}
+	os.Exit(0)
 }
 
 func jsdget(url string, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println(jsdHelpMsg)
-		os.Exit(0)
 	} else {
 		downloadFile(parseToJsdUrl(url), fpath)
 	}

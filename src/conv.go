@@ -48,7 +48,12 @@ func convHelper(oldPrefixValue, newPrefixValue string) bool {
 	sBuf := string(buf)
 	originUrl := ""
 	checkErr(err, "Convert failed.", 8)
-	tmp := strings.Split(strings.Replace(strings.Replace(sBuf, "\t", " ", -1), "  ", " ", -1), " ")
+	tmp := strings.Split(
+		strings.Replace(
+			strings.Replace(sBuf, "\t", " ", -1),
+			"  ", " ", -1),
+		" ")
+
 	for i := range tmp {
 		if strings.HasPrefix(tmp[i], oldPrefixValue) {
 			originUrl = tmp[i]
