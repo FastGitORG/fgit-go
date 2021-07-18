@@ -69,3 +69,26 @@ func replaceNth(s, old, new string, n int) string {
 	}
 	return s
 }
+
+func removeHttpAndHttps(url string) string {
+	if strings.HasPrefix(url, "http://") {
+		return url[7:]
+	}
+	if strings.HasPrefix(url, "https://") {
+		return url[8:]
+	}
+	return url
+}
+
+func replacePrefix(str, prefix, after string) string {
+	if len(str) < len(after) {
+		return str
+	}
+	if str == prefix {
+		return after
+	}
+
+	if strings.HasPrefix(str, prefix) {
+		return after + str[len(prefix)+1:]
+	}
+}

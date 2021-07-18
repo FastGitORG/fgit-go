@@ -84,8 +84,10 @@ func parseToGetUrl(url string) string {
 	if !strings.HasPrefix(url, "https://github.com/") {
 		return url
 	}
-	query := strings.Replace(url, "https://github.com/", "", -1)
+	query := replacePrefix(url, "https://github.com/", "")
+
 	querySplit := strings.Split(query, "/")
+
 	if len(querySplit) > 3 {
 		// Source -> fastgitorg/fgit-go/blob/master/fgit.go
 		// Target -> fastgitorg/fgit-go/master/fgit.go

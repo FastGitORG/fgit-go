@@ -30,14 +30,7 @@ func jsdget(url string, path string) {
 }
 
 func parseToJsdUrl(url string) string {
-	u := strings.Split(url, "//")
-	switch len(u) {
-	case 2:
-		url = u[1]
-	case 3:
-		fmt.Print("Cannot parse url")
-		os.Exit(1)
-	}
+	url = removeHttpAndHttps(url)
 	if !strings.HasPrefix(url, "raw.githubusercontent.com") {
 		fmt.Print("Url is not supported!")
 		os.Exit(1)

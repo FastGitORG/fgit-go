@@ -56,7 +56,9 @@ func debug(url string) bool {
 		}
 		fmt.Println("Remote Address:", url)
 		fmt.Print("IP Address: ")
-		addr, err := net.LookupIP(strings.Replace(strings.Replace(url, "https://", "", -1), "http://", "", -1))
+
+		addr, err := net.LookupIP(removeHttpAndHttps(url))
+
 		if err != nil {
 			fmt.Println("Unknown")
 		} else {
