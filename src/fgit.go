@@ -98,5 +98,8 @@ func main() {
 }
 
 func runByArgs(fb IFuncBase) {
+	if len(os.Args) < 3 {
+		fb.Run([]string{})
+	}
 	fb.Run(os.Args[3:])
 }
