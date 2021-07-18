@@ -45,10 +45,8 @@ func main() {
 	cmd := exec.Command("git")
 
 	// Combine to new command
-	for i := range os.Args {
-		if i != 0 {
-			cmd.Args = append(cmd.Args, strings.Replace(os.Args[i], "https://github.com", "https://hub.fastgit.org", -1))
-		}
+	for i := range os.Args[1:] {
+		cmd.Args = append(cmd.Args, strings.Replace(os.Args[i], "https://github.com", "https://hub.fastgit.org", -1))
 	}
 
 	cmd.Stderr = os.Stderr
