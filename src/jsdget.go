@@ -21,11 +21,11 @@ func (j *JsdFunc) Run(args []string) {
 	os.Exit(0)
 }
 
-func jsdget(url string, fpath string) {
+func jsdget(url string, path string) {
 	if url == "" || url == "--help" || url == "-h" {
 		fmt.Println(jsdHelpMsg)
 	} else {
-		downloadFile(parseToJsdUrl(url), fpath)
+		downloadFile(parseToJsdUrl(url), path)
 	}
 }
 

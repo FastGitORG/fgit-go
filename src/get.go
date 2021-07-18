@@ -44,7 +44,9 @@ func getFile(url, fpath string) {
 			downloadFile(url, fpath)
 		} else {
 			isContinue := ' '
-			fmt.Print("File with the same name exists. New file will cover the old file.\nDo you want to continue? [Y/n]")
+			fmt.Print(
+				"File with the same name exists. New file will cover the old file.\n" +
+					"Do you want to continue? [Y/n]")
 			fmt.Scanf("%c", &isContinue)
 
 			switch strings.ToLower(string(isContinue)) {
@@ -77,7 +79,6 @@ func getFile(url, fpath string) {
 	downloadFile(newURL, fpath)
 
 	fmt.Println("Finished.")
-	os.Exit(0)
 }
 
 func parseToGetUrl(url string) string {
