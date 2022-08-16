@@ -1,6 +1,7 @@
-package main
+package oper
 
 import (
+	"fgit-go/shared"
 	"fmt"
 	"os"
 	"path"
@@ -24,7 +25,7 @@ func (g *GetFunc) Run(args []string) {
 
 func get(url, fpath string) {
 	if url == "" || url == "--help" || url == "-h" {
-		fmt.Println(getHelpMsg)
+		fmt.Println(shared.GetHelpMsg)
 	} else {
 		getFile(url, fpath)
 	}
@@ -34,13 +35,13 @@ func getFile(url, fpath string) {
 	urlSplit := strings.Split(url, "/")
 	filename := urlSplit[len(urlSplit)-1]
 	if fpath == "" {
-		downloadFile(url, filename)
+		shared.DownloadFile(url, filename)
 	}
 
-	if isExists(fpath) {
-		if isDir(fpath) {
+	if shared.IsExists(fpath) {
+		if shared.IsDir(fpath) {
 			fpath = path.Join(fpath, filename)
-			downloadFile(url, fpath)
+			shared.DownloadFile(url, fpath)
 		} else {
 			isContinue := ' '
 			fmt.Print(
@@ -68,14 +69,14 @@ func getFile(url, fpath string) {
 
 	fmt.Println("Redirect ->", url)
 
-	newURL := strings.Replace(url, "https://github.com", downloadMirror, -1)
+	newURL := strings.Replace(url, "https://github.com", shared.DownloadMirror, -1)
 	if newURL != url {
 		fmt.Println("Redirect ->", newURL)
 	}
 	fmt.Println("File ->", fpath)
 	fmt.Println("Downloading...")
 
-	downloadFile(newURL, fpath)
+	shared.DownloadFile(newURL, fpath)
 
 	fmt.Println("Finished.")
 }
@@ -84,7 +85,7 @@ func parseToGetUrl(url string) string {
 	if !strings.HasPrefix(url, "https://github.com/") {
 		return url
 	}
-	query := replacePrefix(url, "https://github.com/", "")
+	query := shared.ReplacePrefix(url, "https://github.com/", "")
 
 	querySplit := strings.Split(query, "/")
 
@@ -92,7 +93,7 @@ func parseToGetUrl(url string) string {
 		// Source -> fastgitorg/fgit-go/blob/master/fgit.go
 		// Target -> fastgitorg/fgit-go/master/fgit.go
 		if querySplit[2] == "blob" {
-			url = rawMirror
+			url = shared.RawMirror
 			for _i, _s := range querySplit {
 				if _i != 2 {
 					url += "/" + _s

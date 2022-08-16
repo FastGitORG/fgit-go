@@ -1,6 +1,7 @@
-package main
+package oper
 
 import (
+	"fgit-go/shared"
 	"fmt"
 	"io/ioutil"
 	"net"
@@ -57,7 +58,7 @@ func debug(url string) bool {
 		fmt.Println("Remote Address:", url)
 		fmt.Print("IP Address: ")
 
-		addr, err := net.LookupIP(removeHttpAndHttps(url))
+		addr, err := net.LookupIP(shared.RemoveHttpAndHttps(url))
 
 		if err != nil {
 			fmt.Println("Unknown")
@@ -80,7 +81,7 @@ func debug(url string) bool {
 		}
 		return debugConnection(url)
 	} else {
-		fmt.Println(debugHelpMsg)
+		fmt.Println(shared.DebugHelpMsg)
 		return true
 	}
 }

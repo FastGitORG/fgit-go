@@ -1,7 +1,7 @@
-package main
+package shared
 
 const (
-	mainHelpMsg = "FastGit Command Line Tool\n" +
+	MainHelpMsg = "FastGit Command Line Tool\n" +
 		"=========================\n" +
 		"REMARKS\n" +
 		"    We will convert GitHub to FastGit automatically\n" +
@@ -13,20 +13,7 @@ const (
 		"    fgit conv [Target<string>] [--help|-h]\n" +
 		"    fgit jsdget [URL<string>] [Path<string>]\n" +
 		"    If you want to known more about extra-syntax, try to use --help"
-	jsdHelpMsg = "FastGit JsdGet Command Line Tool\n" +
-		"=============================\n" +
-		"REMARKS\n" +
-		"    Download with jsDelivr automatically\n" +
-		"SYNTAX\n" +
-		"    fgit jsdget [--help|-h]\n" +
-		"    fgit jsdget [URL<string>]\n" +
-		"    fgit jsdget [URL<string>] [Path<string>]\n" +
-		"ALIASES\n" +
-		"    fgit jdl\n" +
-		"    fgit jdl\n" +
-		"EXAMPLE\n" +
-		"    fgit jsdget https://github.com/fastgitorg/fgit-go/archive/master.zip"
-	getHelpMsg = "FastGit Get Command Line Tool\n" +
+	GetHelpMsg = "FastGit Get Command Line Tool\n" +
 		"=============================\n" +
 		"REMARKS\n" +
 		"    Download with FastGit automatically\n" +
@@ -39,7 +26,7 @@ const (
 		"    fgit download\n" +
 		"EXAMPLE\n" +
 		"    fgit get https://github.com/fastgitorg/fgit-go/archive/master.zip"
-	debugHelpMsg = "FastGit Debug Command Line Tool\n" +
+	DebugHelpMsg = "FastGit Debug Command Line Tool\n" +
 		"===============================\n" +
 		"SYNTAX\n" +
 		"    fgit debug [--help|-h]\n" +
@@ -51,7 +38,7 @@ const (
 		"EXAMPLE\n" +
 		"    fgit debug\n" +
 		"    fgit debug https://fastgit.org"
-	convHelpMsg = "FastGit Conv Command Line Tool\n" +
+	ConvHelpMsg = "FastGit Conv Command Line Tool\n" +
 		"==============================\n" +
 		"REMARKS\n" +
 		"    Convert upstream between GitHub or FastGit UK automatically\n" +

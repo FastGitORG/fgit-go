@@ -1,4 +1,4 @@
-package main
+package shared
 
 import (
 	"fmt"
@@ -8,26 +8,26 @@ import (
 	"strings"
 )
 
-func downloadFile(url, path string) {
+func DownloadFile(url, path string) {
 	client := &http.Client{}
 	req, err := http.NewRequest("GET", url, nil)
-	checkErr(err, "Http.Get create failed!", 1)
-	req.Header.Set("User-Agent", "fgit/"+version)
+	CheckErr(err, "Http.Get create failed!", 1)
+	req.Header.Set("User-Agent", "fgit-go")
 
 	resp, err := client.Do(req)
 	defer resp.Body.Close()
-	checkErr(err, "Http request failed!", 1)
+	CheckErr(err, "Http request failed!", 1)
 
 	out, err := os.Create(path)
-	checkErr(err, "File create failed!", 1)
+	CheckErr(err, "File create failed!", 1)
 	defer out.Close()
 
 	_, err = io.Copy(out, resp.Body)
-	checkErr(err, "io.Copy failed!", 1)
+	CheckErr(err, "io.Copy failed!", 1)
 	fmt.Println("Finished.")
 }
 
-func isDir(path string) bool {
+func IsDir(path string) bool {
 	s, err := os.Stat(path)
 	if err != nil {
 		return false
@@ -35,7 +35,7 @@ func isDir(path string) bool {
 	return s.IsDir()
 }
 
-func isExists(path string) bool {
+func IsExists(path string) bool {
 	_, err := os.Stat(path)
 	if err != nil {
 		if os.IsExist(err) {
@@ -46,7 +46,7 @@ func isExists(path string) bool {
 	return true
 }
 
-func checkErr(err error, msg string, exitCode int) {
+func CheckErr(err error, msg string, exitCode int) {
 	if err != nil {
 		fmt.Println("Exception:", msg)
 		fmt.Println("Tracker:", err)
@@ -54,7 +54,7 @@ func checkErr(err error, msg string, exitCode int) {
 	}
 }
 
-func replaceNth(s, old, new string, n int) string {
+func ReplaceNth(s, old, new string, n int) string {
 	i := 0
 	for m := 1; m <= n; m++ {
 		x := strings.Index(s[i:], old)
@@ -70,7 +70,7 @@ func replaceNth(s, old, new string, n int) string {
 	return s
 }
 
-func removeHttpAndHttps(url string) string {
+func RemoveHttpAndHttps(url string) string {
 	if strings.HasPrefix(url, "http://") {
 		return url[7:]
 	}
@@ -80,7 +80,7 @@ func removeHttpAndHttps(url string) string {
 	return url
 }
 
-func replacePrefix(str, prefix, after string) string {
+func ReplacePrefix(str, prefix, after string) string {
 	if len(str) < len(after) {
 		return str
 	}

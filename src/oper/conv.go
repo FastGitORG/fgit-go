@@ -1,6 +1,7 @@
-package main
+package oper
 
 import (
+	"fgit-go/shared"
 	"fmt"
 	"os"
 	"os/exec"
@@ -21,22 +22,22 @@ func (c *ConvFunc) Run(args []string) {
 	}
 	os.Exit(0)
 }
-func convToFastGit() bool {
-	return convHelper("https://github.com", gitMirror)
+func ConvToFastGit() bool {
+	return convHelper("https://github.com", shared.GitMirror)
 }
 
-func convToGitHub() bool {
-	return convHelper(gitMirror, "https://github.com")
+func ConvToGitHub() bool {
+	return convHelper(shared.GitMirror, "https://github.com")
 }
 
 func conv(target string) {
 	switch target {
 	case "gh", "github":
-		convToGitHub()
+		ConvToGitHub()
 	case "fg", "fastgit":
-		convToFastGit()
+		ConvToFastGit()
 	case "-h", "--help":
-		fmt.Println(convHelpMsg)
+		fmt.Println(shared.ConvHelpMsg)
 	default:
 		fmt.Println("Invalid args for conv. Use --help to get more information.")
 	}
@@ -47,7 +48,7 @@ func convHelper(oldPrefixValue, newPrefixValue string) bool {
 	buf, err := cmd.Output()
 	sBuf := string(buf)
 	originUrl := ""
-	checkErr(err, "Convert failed.", 8)
+	shared.CheckErr(err, "Convert failed.", 8)
 	tmp := strings.Split(
 		strings.Replace(
 			strings.Replace(sBuf, "\t", " ", -1),
@@ -66,6 +67,6 @@ func convHelper(oldPrefixValue, newPrefixValue string) bool {
 	fmt.Println(originUrl)
 	cmd = exec.Command("git", "remote", "set-url", "origin", strings.Replace(originUrl, oldPrefixValue, newPrefixValue, 1))
 	_, err = cmd.Output()
-	checkErr(err, "Convert failed.", 8)
+	shared.CheckErr(err, "Convert failed.", 8)
 	return true
 }
