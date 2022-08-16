@@ -12,7 +12,6 @@ const (
 		"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
 		"    fgit conv [Target<string>] [--help|-h]\n" +
 		"    fgit jsdget [URL<string>] [Path<string>]\n" +
-		"    fgit host [show]\n" +
 		"    If you want to known more about extra-syntax, try to use --help"
 	jsdHelpMsg = "FastGit JsdGet Command Line Tool\n" +
 		"=============================\n" +
@@ -64,17 +63,4 @@ const (
 		"    fgit convert\n" +
 		"EXAMPLE\n" +
 		"    fgit conv gh"
-	hostHelpMsg = "FastGit Host Command Line Tool\n" +
-		"==============================\n" +
-		"REMARKS\n" +
-		"    Get hosts from FastGit Emergency Network Framework Api\n" +
-		"SYNTAX\n" +
-		"    fgit host [show]\n" +
-		"EXAMPLE\n" +
-		"    fgit host show"
-)
-
-const (
-	// FastGit UK Emergency Network Framework Host Api
-	fgEnfHostApi = "https://api.fastgit.org/enf/host"
 )

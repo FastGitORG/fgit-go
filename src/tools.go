@@ -27,27 +27,6 @@ func downloadFile(url, path string) {
 	fmt.Println("Finished.")
 }
 
-func getResponseString(url string) string {
-	var client http.Client
-	req, err := http.NewRequest("GET", url, nil)
-	checkErr(err, "Http.Get create failed!", 1)
-	req.Header.Set("User-Agent", "fgit/"+version)
-	checkErr(err, "Http.Get create failed!", 1)
-
-	resp, err := client.Do(req)
-	defer resp.Body.Close()
-	checkErr(err, "Http request failed!", 1)
-
-	if resp.StatusCode != http.StatusOK {
-		fmt.Printf("Error: response is not OK is %v!\n", resp.StatusCode)
-		os.Exit(1)
-	}
-
-	bodyBytes, err := io.ReadAll(resp.Body)
-	checkErr(err, "io.ReadAll failed!", 1)
-	return string(bodyBytes)
-}
-
 func isDir(path string) bool {
 	s, err := os.Stat(path)
 	if err != nil {

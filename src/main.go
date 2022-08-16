@@ -34,9 +34,6 @@ func main() {
 	case "conv", "convert":
 		runByArgs(&ConvFunc{})
 
-	case "host":
-		runByArgs(&HostFunc{})
-
 	case "-v", "--version", "version":
 		showVersion()
 	}
