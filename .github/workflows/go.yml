@@ -20,8 +20,8 @@ jobs:
 
     - name: Build AMD64
       run: |
-        cd src
         version=`cat version`
+        cd src
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
@@ -31,8 +31,8 @@ jobs:
 
     - name: Build 386
       run: |
-        cd src
         version=`cat version`
+        cd src
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
@@ -41,8 +41,8 @@ jobs:
 
     - name: Build ARM
       run: |
-        cd src
         version=`cat version`
+        cd src
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
@@ -50,8 +50,8 @@ jobs:
 
     - name: Build ARM64
       run: |
-        cd src
         version=`cat version`
+        cd src
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
