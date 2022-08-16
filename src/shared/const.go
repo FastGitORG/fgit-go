@@ -11,7 +11,6 @@ const (
 		"    fgit debug [URL<string>] [--help|-h]\n" +
 		"    fgit get [URL<string>] [Path<string>] [--help|-h]\n" +
 		"    fgit conv [Target<string>] [--help|-h]\n" +
-		"    fgit jsdget [URL<string>] [Path<string>]\n" +
 		"    If you want to known more about extra-syntax, try to use --help"
 	GetHelpMsg = "FastGit Get Command Line Tool\n" +
 		"=============================\n" +

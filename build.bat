@@ -14,6 +14,8 @@ set timestamp=%date% %time%
 echo Version: %version%
 echo Build Time: %timestamp%
 
+cd src
+
 echo -^> Removing old files
 del /s /Q release > nul
 
@@ -22,34 +24,34 @@ set GOARCH=amd64
 
 set GOOS=windows
 echo --^> Compiling Windows
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-amd64.exe .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-amd64.exe .\
 set GOOS=darwin
 echo --^> Compiling Darwin
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-darwin-amd64 .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-darwin-amd64 .\
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-amd64 .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-amd64 .\
 
 set GOARCH=386
 echo -^> Compiling 386
 set GOOS=windows
 echo --^> Compiling Windows
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-386.exe .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-386.exe .\
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-386 .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-386 .\
 
 
 set GOARCH=arm
 echo -^> Compiling ARM
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm .\
 
 set GOARCH=arm64
 echo -^> Compiling ARM64
 set GOOS=linux
 echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm64 .\src
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm64 .\
 
 pause

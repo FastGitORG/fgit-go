@@ -38,6 +38,9 @@ func main() {
 	case "get", "dl", "download":
 		runByArgs(&oper.GetFunc{})
 
+	case "ep", "endpoint", "target":
+		runByArgs(&oper.EndPointFunc{})
+
 	case "conv", "convert":
 		runByArgs(&oper.ConvFunc{})
 
