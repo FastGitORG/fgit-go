@@ -26,21 +26,11 @@ set GOOS=windows
 echo --^> Compiling Windows
 go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-amd64.exe .\
 set GOOS=darwin
-echo --^> Compiling Darwin
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-darwin-amd64 .\
+echo --^> Compiling macOS
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-macos-amd64 .\
 set GOOS=linux
 echo --^> Compiling Linux
 go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-amd64 .\
-
-set GOARCH=386
-echo -^> Compiling 386
-set GOOS=windows
-echo --^> Compiling Windows
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-windows-386.exe .\
-set GOOS=linux
-echo --^> Compiling Linux
-go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-386 .\
-
 
 set GOARCH=arm
 echo -^> Compiling ARM
@@ -53,5 +43,7 @@ echo -^> Compiling ARM64
 set GOOS=linux
 echo --^> Compiling Linux
 go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-linux-arm64 .\
+echo --^> Compiling macOS
+go build -ldflags="-s -w -X main.version=%version% -X 'main.timestamp=%timestamp%'" -o release\fgit-macos-arm64 .\
 
 pause
