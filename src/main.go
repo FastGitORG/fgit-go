@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fgit-go/config"
 	"fgit-go/oper"
 	"fgit-go/shared"
 	"fmt"
@@ -25,6 +26,8 @@ func main() {
 		fmt.Println(shared.MainHelpMsg)
 		os.Exit(0)
 	}
+
+	config.ReadConfig()
 
 	isConvertToFastGit := false
 

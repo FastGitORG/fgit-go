@@ -17,7 +17,7 @@ func (d *DebugFunc) Run(args []string) {
 	var isConnectOk bool
 	switch len(args) {
 	case 0:
-		isConnectOk = debug("https://hub.fastgit.org")
+		isConnectOk = debug(shared.GitMirror)
 	case 1:
 		isConnectOk = debug(os.Args[0])
 	default:
