@@ -20,38 +20,42 @@ jobs:
 
     - name: Build AMD64
       run: |
+        cd src
         version=`cat version`
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
-        GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-amd64.exe ./src
-        GOARCH=amd64 GOOS=darwin go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-darwin-amd64 ./src
-        GOARCH=amd64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-amd64 ./src
+        GOARCH=amd64 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-amd64.exe ./
+        GOARCH=amd64 GOOS=darwin go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-darwin-amd64 ./
+        GOARCH=amd64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-amd64 ./
 
     - name: Build 386
       run: |
+        cd src
         version=`cat version`
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
-        GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe ./src
-        GOARCH=386 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-386 ./src
+        GOARCH=386 GOOS=windows go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-windows-386.exe ./
+        GOARCH=386 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-386 ./
 
     - name: Build ARM
       run: |
+        cd src
         version=`cat version`
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
-        GOARCH=arm GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm ./src
+        GOARCH=arm GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm ./
 
     - name: Build ARM64
       run: |
+        cd src
         version=`cat version`
         timestamp=`date "+%Y-%m-%d %H:%M:%S"`
         echo "version -> $version"
         echo "timestamp -> $timestamp"
-        GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 ./src
+        GOARCH=arm64 GOOS=linux go build -ldflags "-s -w -X main.version=$version -X \"main.timestamp=$timestamp\"" -o ~/release/fgit-linux-arm64 ./
 
     - name: Upload Artifact (Windows x64)
       uses: actions/upload-artifact@v2.2.4
